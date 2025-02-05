@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google"
 
 import "@workspace/ui/globals.css"
-import { Providers } from "@/components/providers"
+import { NextThemeProviders } from "@/components/providers/next-theme.provider"
+import ReactQueryProvider from "@/components/providers/react-query.provider"
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -23,7 +24,11 @@ export default function RootLayout({
       <body
         className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased `}
       >
-        <Providers>{children}</Providers>
+      <NextThemeProviders>
+        <ReactQueryProvider>
+          {children}
+        </ReactQueryProvider>
+      </NextThemeProviders>
       </body>
     </html>
   )
