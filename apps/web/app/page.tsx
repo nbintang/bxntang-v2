@@ -1,11 +1,16 @@
-
+"use client"
 import { quotes } from "@/dummy";
 import { BlurFade } from "@workspace/ui/components/blur-fade";
 import { Meteors } from "@workspace/ui/components/meteors";
 import { WordRotate } from "@workspace/ui/components/word-rotate";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const randomQuotesEveryRefresh = quotes[Math.floor(Math.random() * quotes.length)];
+  const [randomQuote, setRandomQuote] = useState<string | undefined>("");
+
+  useEffect(() => {
+    setRandomQuote(quotes[Math.floor(Math.random() * quotes.length)]);
+  }, []);
   return <section className="w-full flex flex-col justify-center md:justify-between  min-h-screen">
     <Meteors number={16} />
     <BlurFade delay={0.2} inView blur="0px">
@@ -14,8 +19,8 @@ export default function Home() {
       </h2>
     </BlurFade>
     <BlurFade delay={0.2 * 2} inView blur="0px" >
-      <p className="text-lg font-bold  dark:text-white pt-5 text-left md:text-center tracking-tighter sm:text-xl md:text-9xl lg:text-[20px] xl:text-[30px]">
-        &quot;{randomQuotesEveryRefresh}&quot;
+      <p className="text-base font-bold  dark:text-white pt-5 text-left md:text-center tracking-tighter sm:text-xl md:text-9xl lg:text-[20px] xl:text-[30px]">
+        &quot;{randomQuote}&quot;
       </p>
     </BlurFade>
 
