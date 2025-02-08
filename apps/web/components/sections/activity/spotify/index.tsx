@@ -7,9 +7,8 @@ import { cn } from "@workspace/ui/lib/utils";
 import { ListMusic, Music } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 import SkeletonCard from "../skeleton";
-import { toast } from "sonner";
 
 export default function SpotifyCard({ className }: { className?: string }) {
   const {
