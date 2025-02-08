@@ -18,7 +18,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@workspace/ui/components/form";
 import sendEmail, { MailProps } from "@/lib/mail";
@@ -50,17 +49,13 @@ export function EmailDialog() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      toast.promise(sendEmail(values), {
-        loading: "Sending...",
-        success: "Email sent successfully",
-        error: "Error sending email",
-      });
-      form.reset();
-      setOpen(false);
-    } catch (error) {
-      console.log(error);
-    }
+    toast.promise(sendEmail(values), {
+      loading: "Sending...",
+      success: "Email sent successfully, the owner will get back to you.",
+      error: "Error sending email",
+    });
+    form.reset();
+    setOpen(false);
   }
 
   return (
@@ -69,7 +64,7 @@ export function EmailDialog() {
         <DialogHeader>
           <DialogTitle>Send Email</DialogTitle>
           <DialogDescription>
-            Fill out the form below to send an email.
+            Fill out the form below to send an message.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -79,7 +74,6 @@ export function EmailDialog() {
               name="from"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Fill Your Email</FormLabel>
                   <FormControl>
                     <Input placeholder="Who are You?" {...field} />
                   </FormControl>
@@ -93,7 +87,6 @@ export function EmailDialog() {
               name="text"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Message</FormLabel>
                   <FormControl>
                     <Textarea
                       rows={6}

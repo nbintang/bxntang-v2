@@ -8,33 +8,38 @@ import ActivityCard from "@/components/layout/activity-card";
 import { UseQueryResult } from "@tanstack/react-query";
 import Image from "next/image";
 import { ChartNoAxesColumn, Trophy } from "lucide-react";
-
 import { cn } from "@workspace/ui/lib/utils";
 import SkeletonCard from "../skeleton";
 export default function PlaystationCard({ className }: { className?: string }) {
   const {
     data,
     isFetched,
-    isFetching,
     isLoading,
     isError,
     error,
   }: UseQueryResult<FilteredPSDataProps, Error> = usePlaystationData();
 
-  if (isLoading || isFetching || !data) {
+  if (isLoading) {
     return <SkeletonCard className={className} />;
   }
 
-  if (isError) {
+  if (isError || !data) {
     return (
       <ActivityCard
         icon={ActivityIcons.playstation}
         title={"PlayStation"}
         className={cn(` relative`, className)}
       >
-        <p className="text-sm text-muted-foreground">
-          {error instanceof Error ? error.message : "Something went wrong"}
-        </p>
+        <div>
+          <h1 className="text-xl sm:text-3xl md:text-4xl font-bold text-destructive ">
+            500
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            {error?.message.includes(
+              `https://ca.account.sony.com/api/v1/ssocookie.`
+            ) && "Something went wrong :)"}
+          </p>
+        </div>
       </ActivityCard>
     );
   }

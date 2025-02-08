@@ -7,19 +7,27 @@ import { cn } from "@workspace/ui/lib/utils";
 import { ListMusic, Music } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
-import React from "react";
+import React, { useEffect } from "react";
 import SkeletonCard from "../skeleton";
+import { toast } from "sonner";
 
 export default function SpotifyCard({ className }: { className?: string }) {
   const {
     data,
-    isFetched,
-    isFetching,
     isError,
     isLoading,
     error,
   }: UseQueryResult<SpotifyDataProps, Error> = useSpotifyData();
+  // useEffect(() => {
+  //   if (data?.nowPlaying) {
+  //     if (data.nowPlaying.isPlayed) {
+  //       const toastIt = toast.loading("Now playing: " + data.nowPlaying.title);
+  //       setTimeout(() => {
+  //         toast.dismiss(toastIt);
+  //       }, 1000); //  seconds
+  //     }
+  //   }
+  // }, [data?.nowPlaying]);
 
   if (isError) {
     return (
@@ -35,9 +43,10 @@ export default function SpotifyCard({ className }: { className?: string }) {
     );
   }
 
-  if (isLoading || isFetching || !isFetched || !data) {
+  if (isLoading || !data) {
     return <SkeletonCard className={className} />;
   }
+
   const { followedArtists, nowPlaying, playlist } = data;
 
   return (

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, { useEffect } from "react";
-import { ModeToggle } from "@/components/providers/next-theme.provider";
+import { ModeToggle } from "@/components/mode-toggle";
 import { Button, buttonVariants } from "@workspace/ui/components/button";
 import { Separator } from "@workspace/ui/components/separator";
 import {
@@ -47,7 +47,7 @@ export default function Navbar() {
                   <Button
                     size={"icon"}
                     aria-label={item.label}
-                    variant={"link"}
+                    variant={"ghost"}
                     className="size-12 rounded-full"
                     onClick={() => handleNavigate(item.href)}
                   >
@@ -68,6 +68,8 @@ export default function Navbar() {
                   <Link
                     href={social.url}
                     aria-label={social.name}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
                       "size-12 rounded-full"

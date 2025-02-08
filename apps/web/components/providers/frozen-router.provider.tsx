@@ -1,6 +1,6 @@
 
 
-import usePreviousValue from "../../../hooks/use-prev-value";
+import usePreviousValue from "../../hooks/use-prev-value";
 import { LayoutRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { useContext } from "react";

@@ -6,7 +6,10 @@ const useSpotifyData = (): UseQueryResult<SpotifyDataProps, Error> => {
   return useQuery({
     queryKey: ["spotify"],
     queryFn: getFilteredSpotifyData,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 10, 
+    refetchInterval: 5000, 
+    refetchOnWindowFocus: false, 
+    placeholderData: (previousData) => previousData, 
   });
 };
 

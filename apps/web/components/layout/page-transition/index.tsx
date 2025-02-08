@@ -2,7 +2,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import React from "react";
 import { usePathname } from "next/navigation";
-import FrozenRouter from "./frozen-router";
+import FrozenRouter from "../../providers/frozen-router.provider";
 interface LayoutTransitionProps {
   children: React.ReactNode;
   className?: React.ComponentProps<typeof motion.div>["className"];

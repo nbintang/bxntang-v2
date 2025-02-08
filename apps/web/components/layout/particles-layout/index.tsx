@@ -5,9 +5,9 @@ type ChildProps = {
 };
 export default function ParticlesLayout({ children }: ChildProps) {
   return (
-    <main className="relative  pl-5 dark:bg-background w-full min-h-screen  overflow-x-hidden">
+    <main className="relative dark:bg-background w-full   overflow-x-hidden">
       {children}
-      <Particles className="absolute inset-0" quantity={200} ease={80} />
+      <Particles className="absolute inset-0" quantity={100} ease={50} />
     </main>
   );
 }

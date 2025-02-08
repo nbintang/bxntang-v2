@@ -8,6 +8,7 @@ import { Metadata } from "next";
 import { Toaster } from "@workspace/ui/components/sonner";
 import ParticlesLayout from "@/components/layout/particles-layout";
 import { EmailDialog } from "@/components/sections/home/email-dialog";
+import { generateMetadata, mainMetaData } from "@/lib/metadata";
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -18,6 +19,9 @@ const fontMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
 });
+
+export const metadata: Metadata = generateMetadata(mainMetaData);
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -46,27 +50,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-//OG AND SEO
-export const metadata: Metadata = {
-  title: "Bxntang",
-  description: "Nur Bintang Hidayat or as kindly known as Bxntang",
-  authors: {
-    name: "Nur Bintang Hidayat",
-    url: "https://github.com/nbintang",
-  },
-  openGraph: {
-    title: "Bxntang",
-    description: "Nur Bintang Hidayat or as kindly known as Bxntang",
-    url: `${process.env.NODE_ENV !== "development" ? "https://bxntang-2.vercel.app" : "http://localhost:3000"}`,
-    siteName: "Next.js",
-    images: [
-      {
-        url: `${process.env.NODE_ENV !== "development" ? "https://bxntang-2.vercel.app" : "http://localhost:3000"}/api/og?title=BXNTANG`,
-        height: 600,
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-};
