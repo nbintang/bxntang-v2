@@ -17,7 +17,6 @@ const user = {
   id: "1556944157329331522",
 };
 
-
 type ProfilePsDataProps = {
   profile: ProfileFromUserNameResponse;
   recent: RecentlyPlayedGame[];
@@ -26,7 +25,6 @@ type ProfilePsDataProps = {
 export async function fetchProfilePsData(): Promise<ProfilePsDataProps> {
   try {
     const authorization = await getPlaystationToken();
-
     if (!authorization) {
       throw new Error("Failed to retrieve PlayStation token");
     }
@@ -41,10 +39,13 @@ export async function fetchProfilePsData(): Promise<ProfilePsDataProps> {
       .gameLibraryTitlesRetrieve.games as RecentlyPlayedGame[];
 
     const titles = await getUserTitles(authorization, user.id);
-    const findRecentlyPlayedGameTitles = titles.trophyTitles.find(
-      (t) => t.trophyTitleName === recentlyPlayedGame[0]?.name
-    );
 
+    const findRecentlyPlayedGameTitles = titles.trophyTitles.find(
+      (t) =>
+        t.trophyTitleName.toLowerCase().trim() ===
+        recentlyPlayedGame[0]?.name.toLowerCase().trim()
+    );
+    
     const gameTitles = findRecentlyPlayedGameTitles
       ? await getTitleTrophies(
           authorization,

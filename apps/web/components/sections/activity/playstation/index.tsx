@@ -25,6 +25,7 @@ export default function PlaystationCard({ className }: { className?: string }) {
   }
 
   if (isError || !data) {
+
     return (
       <ActivityCard
         icon={ActivityIcons.playstation}
@@ -44,7 +45,7 @@ export default function PlaystationCard({ className }: { className?: string }) {
       </ActivityCard>
     );
   }
-
+  console.log(data)
   return (
     <ActivityCard
       icon={ActivityIcons.playstation}
