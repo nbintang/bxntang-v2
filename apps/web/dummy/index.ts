@@ -5,6 +5,5 @@ export const quotes: string[] =[
   "Software comes from heaven when you have good hardware.",
   "Software is like s#x: it’s better when it’s free.",
   "Confusion is part of programming.",
-  "Talk is cheap. Show me the code.",
   "Coding like poetry should be short and concise.",
 ]

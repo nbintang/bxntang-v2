@@ -1,5 +1,5 @@
 import { Gamepad2, HomeIcon, PencilIcon } from "lucide-react";
-import Icons from "../icons/nav.icon";
+import NavIcons from "../icons/nav.icon";
 
 const DATA = {
   navbar: [
@@ -12,12 +12,12 @@ const DATA = {
       GitHub: {
         name: "GitHub",
         url: "https://github.com/nbintang",
-        icon: Icons.github,
+        icon: NavIcons.github,
       },
       LinkedIn: {
         name: "LinkedIn",
         url: "https://www.linkedin.com/in/nur-bintang-hidayat",
-        icon: Icons.linkedin,
+        icon: NavIcons.linkedin,
       },
     },
   },

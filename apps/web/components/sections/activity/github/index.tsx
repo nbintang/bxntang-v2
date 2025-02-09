@@ -40,7 +40,7 @@ export default function GithubContributionChartsCard({
               color: "#60a5fa",
             },
           }}
-          className="h-[400px] w-full"
+          className="h-[360px] w-full"
         >
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={chartData}>

@@ -9,8 +9,8 @@ import React from "react";
 export default function Activity() {
   return (
     <>
-      <main className=" mx-auto  min-h-screen w-full">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3  mx-3 my-3">
+      <main className=" mx-auto   w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3  mx-3 my-3">
           <PlaystationCard className="md:col-span-2 col-span-1" />
           <SpotifyCard className="md:col-span-1 col-span-1" />
           <GithubContributionChartsCard className="md:col-span-3 col-span-1 w-full " />

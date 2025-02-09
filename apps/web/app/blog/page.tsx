@@ -1,7 +1,7 @@
 import { TechIcons } from "@/components/icons/tech.icon";
 import { Card } from "@workspace/ui/components/card";
 
-export default function Page() {
+export default function Blog() {
   return (
     <main className="grid place-items-center min-h-screen ">
       <div>

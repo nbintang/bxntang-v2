@@ -17,16 +17,6 @@ export default function SpotifyCard({ className }: { className?: string }) {
     isLoading,
     error,
   }: UseQueryResult<SpotifyDataProps, Error> = useSpotifyData();
-  // useEffect(() => {
-  //   if (data?.nowPlaying) {
-  //     if (data.nowPlaying.isPlayed) {
-  //       const toastIt = toast.loading("Now playing: " + data.nowPlaying.title);
-  //       setTimeout(() => {
-  //         toast.dismiss(toastIt);
-  //       }, 1000); //  seconds
-  //     }
-  //   }
-  // }, [data?.nowPlaying]);
 
   if (isError) {
     return (

@@ -17,7 +17,7 @@ import DATA from "./data";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import useMediaQuery from "@workspace/ui/lib/use-media-query";
-import Icons from "../icons/nav.icon";
+import NavIcons from "../icons/nav.icon";
 import { useEmailDialog } from "@/hooks/use-email-dialog";
 
 export default function Navbar() {
@@ -93,7 +93,7 @@ export default function Navbar() {
                   size={"icon"}
                   className="size-12 rounded-full"
                 >
-                  <Icons.email className="size-4" />
+                  <NavIcons.email className="size-4" />
                 </Button>
               </TooltipTrigger>
               <TooltipContent>

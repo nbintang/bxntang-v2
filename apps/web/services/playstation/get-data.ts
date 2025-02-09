@@ -1,7 +1,6 @@
 "use server";
 
 // this is only for server side integration
-
 import {
   getProfileFromUserName,
   getRecentlyPlayedGames,

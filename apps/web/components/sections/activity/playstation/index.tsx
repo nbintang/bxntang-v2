@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-
 import usePlaystationData from "@/hooks/use-playstation-data";
 import { ActivityIcons } from "@/components/icons/activity.icon";
 import { Skeleton } from "@workspace/ui/components/skeleton";
@@ -10,6 +9,8 @@ import Image from "next/image";
 import { ChartNoAxesColumn, Trophy } from "lucide-react";
 import { cn } from "@workspace/ui/lib/utils";
 import SkeletonCard from "../skeleton";
+
+
 export default function PlaystationCard({ className }: { className?: string }) {
   const {
     data,
@@ -71,47 +72,49 @@ export default function PlaystationCard({ className }: { className?: string }) {
           </p>
         </div>
       </div>
-      {isFetched && (
-        <div className="mt-4">
-          <div className="flex gap-3 mb-2 items-center">
-            <h4 className="font-semibold ">Recent Achievements</h4>
+      <div className="flex flex-wrap items-start gap-x-5">
+        {isFetched && (
+          <div className="mt-4">
+            <div className="flex gap-3 mb-2 items-center">
+              <h4 className="font-semibold ">Recent Achievements</h4>
+            </div>
+            <ul className="space-y-2">
+              {data.trophies?.map((t) => (
+                <li key={t.trophyId} className="flex items-center gap-2">
+                  <Trophy
+                    className={`h-4 w-4 ${
+                      t.trophyType === "gold"
+                        ? "text-yellow-500"
+                        : t.trophyType === "silver"
+                          ? "text-gray-500"
+                          : t.trophyType === "bronze"
+                            ? "text-orange-700"
+                            : "text-primary"
+                    }`}
+                  />
+                  <span className="text-sm">{t.trophyName}</span>
+                </li>
+              ))}
+            </ul>
           </div>
+        )}
+        <div className="mt-4">
+          <h4 className="font-semibold mb-2">Gaming Stats</h4>
           <ul className="space-y-2">
-            {data.trophies?.map((t) => (
-              <li key={t.trophyId} className="flex items-center gap-2">
-                <Trophy
-                  className={`h-4 w-4 ${
-                    t.trophyType === "gold"
-                      ? "text-yellow-500"
-                      : t.trophyType === "silver"
-                        ? "text-gray-500"
-                        : t.trophyType === "bronze"
-                          ? "text-orange-700"
-                          : "text-primary"
-                  }`}
-                />
-                <span className="text-sm">{t.trophyName}</span>
-              </li>
-            ))}
+            <li className="flex items-center gap-2">
+              <ChartNoAxesColumn className="h-4 w-4 text-muted-foreground" />
+              <span className="text-sm">
+                Level {data.trophySum?.level} has been achieved!
+              </span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Trophy className="h-4 w-4 text-muted-foreground" />
+              <span className="text-sm">
+                Earned {data.totalTrophiesExist} trophies in total!
+              </span>
+            </li>
           </ul>
         </div>
-      )}
-      <div className="mt-4">
-        <h4 className="font-semibold mb-2">Gaming Stats</h4>
-        <ul className="space-y-2">
-          <li className="flex items-center gap-2">
-            <ChartNoAxesColumn className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm">
-              Level {data.trophySum?.level} has been achieved!
-            </span>
-          </li>
-          <li className="flex items-center gap-2">
-            <Trophy className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm">
-              Earned {data.totalTrophiesExist} trophies in total!
-            </span>
-          </li>
-        </ul>
       </div>
     </ActivityCard>
   );

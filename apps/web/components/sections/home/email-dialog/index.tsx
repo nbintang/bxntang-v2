@@ -98,7 +98,7 @@ export function EmailDialog() {
                 </FormItem>
               )}
             />
-            <Button type="submit">Send Email</Button>
+            <Button type="submit" className="w-full  sm:w-auto">Send Message</Button>
           </form>
         </Form>
       </DialogContent>

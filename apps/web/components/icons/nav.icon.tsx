@@ -1,7 +1,7 @@
 
 import { CalendarIcon, InstagramIcon, MailIcon } from "lucide-react";
 
-const Icons = {
+const NavIcons = {
   calendar: (props: IconProps) => <CalendarIcon {...props} />,
   email: (props: IconProps) => <MailIcon {...props} />,
   linkedin: (props: IconProps) => (
@@ -36,4 +36,4 @@ const Icons = {
     </svg>
   ),
 };
-export default Icons
+export default NavIcons
