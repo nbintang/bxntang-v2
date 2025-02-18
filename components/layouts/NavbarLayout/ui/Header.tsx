@@ -14,7 +14,6 @@ interface HeaderProps {
   toggleRef: React.RefObject<HTMLButtonElement>;
 }
 
-
 const Header: React.FC<HeaderProps> = ({
   panelId,
   invert = false,
@@ -24,17 +23,26 @@ const Header: React.FC<HeaderProps> = ({
   toggleRef,
 }) => {
   const setOpenEmail = useEmailDialog((state) => state.setOpen);
+
   return (
     <Container>
       <div className="flex items-center justify-between">
         <Link href="/" aria-label="Home">
-          <LogoLayout invert={invert}>BXNTANG</LogoLayout>
+          <LogoLayout
+            invert={invert}
+            className="cursor-pointer hover:text-destructive transition-all duration-200"
+          >
+            BXNTANG
+          </LogoLayout>
         </Link>
-        <div className="flex items-center gap-x-8">
+        <div className="flex items-center gap-x-2 sm:gap-x-4 lg:gap-x-8">
           <Button
             variant={invert ? "secondary" : "black"}
             type="button"
-            className={cn( "rounded-full font-medium")}
+            className={cn(
+              "rounded-full font-semibold  sm:px-6",
+              "h-9 sm:h-10 px-3"
+            )}
             onClick={() => setOpenEmail(true)}
           >
             Contact Me
@@ -47,7 +55,7 @@ const Header: React.FC<HeaderProps> = ({
             aria-expanded={expanded}
             aria-controls={panelId}
             size={"icon"}
-            className={cn("group rounded-full  transition border")}
+            className={cn("group rounded-full  transition ", !invert && "border")}
             aria-label="Toggle navigation"
           >
             <Icon

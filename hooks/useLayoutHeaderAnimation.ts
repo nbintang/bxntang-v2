@@ -1,12 +1,10 @@
 import { useEffect, useId, useRef, useState } from "react";
-
 import { useReducedMotion } from "motion/react";
-
 import useMediaQuery from "@/hooks/useMediaQuery";
 
 const useLayoutHeaderAnimation = () => {
   const panelId = useId();
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(false)
   const openRef = useRef<HTMLButtonElement>(null!);
   const closeRef = useRef<HTMLButtonElement>(null!);
   const navRef = useRef<HTMLDivElement>(null);
@@ -17,9 +15,8 @@ const useLayoutHeaderAnimation = () => {
       if (
         (event.target as HTMLElement).closest("a")?.href ===
         window.location.href
-      ) {
+      )
         setExpanded(false);
-      }
     }
     window.addEventListener("click", onClick);
 

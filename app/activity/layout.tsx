@@ -1,3 +1,4 @@
+import Container from "@/components/Container";
 import { generateMetadata } from "@/lib/seo/metadata";
 import { mainURL, metaDataOpenGraph } from "@/lib/seo/openGraph";
 import { Metadata } from "next";
@@ -8,7 +9,7 @@ export default function ActivityLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <main className=" mx-auto   w-full">{children}</main>;
+  return <Container className="mt-14 sm:mt-16 mb-3">{children}</Container>;
 }
 export const metadata: Metadata = generateMetadata({
   title: "Bxntang | Activity",

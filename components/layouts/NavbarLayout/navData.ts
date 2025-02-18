@@ -10,11 +10,11 @@ const navData = {
   address: [
     {
       city: "Depok",
-      details: "Jln Curug ",
+      details: "Beji, Depok, Jawa Barat",
     },
     {
       city: "Depok",
-      details: "Jln Curug ",
+      details: "Kelapa Dua, Depok, Jawa Barat",
     },
   ],
   contact: {

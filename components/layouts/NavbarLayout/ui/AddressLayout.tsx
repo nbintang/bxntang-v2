@@ -25,7 +25,7 @@ const Office: React.FC<OfficeProps> = ({ name, children, invert = false }) => {
   );
 };
 
-interface OfficesProps {
+interface OfficesProps extends React.HTMLAttributes<HTMLUListElement> {
   invert?: boolean;
   className?: string;
 }
@@ -36,15 +36,19 @@ const OfficesLayout: React.FC<OfficesProps> = ({
 }) => {
   return (
     <ul role="list" {...props}>
-      {navData.address.map((item, index) => (
-        <li key={index}>
-          <Office name={item.city} invert={invert}>
-           {
-            item.details
-           }
-          </Office>
-        </li>
-      ))}
+      {navData.address.map((item, index) => {
+        const splitAddress = item.details.split(", ");
+        const address = [splitAddress[0], splitAddress.slice(1).join(", ")];
+        return (
+          <li key={index}>
+            <Office name={item.city} invert={invert}>
+              <span>{address[0]}</span>
+              <br />
+              <span>{address[1]}</span>
+            </Office>
+          </li>
+        );
+      })}
     </ul>
   );
 };

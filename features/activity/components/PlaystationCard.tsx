@@ -60,9 +60,11 @@ export default function PlaystationCard({ className }: { className?: string }) {
               className="h-full w-full object-cover"
               priority
             />
-            <span className="absolute inset-0 bg-black/50" />
-            {data.isOnline && (
+
+            {data.isOnline ? (
               <Dot className="absolute w-12 h-12 text-green-400  -bottom-4 -right-4" />
+            ) : (
+              <span className="absolute inset-0 bg-black/50" />
             )}
           </div>
         ) : (
@@ -70,7 +72,14 @@ export default function PlaystationCard({ className }: { className?: string }) {
         )}
         <div className="flex-1">
           <h3 className="text-sm text-muted-foreground">Recently Played</h3>
-          <p className="text-base font-semibold ">{data.gameName || "N/A"}</p>
+          <p
+            className={cn(
+              " font-semibold ",
+              data.gameName!.trim().length > 20 ? "text-sm" : "text-base"
+            )}
+          >
+            {data.gameName || "N/A"}
+          </p>
           <p className="text-xs text-muted-foreground">
             {data.isOnline ? "Is Playing Right Now" : `${data.lastPlayedTime}`}
           </p>

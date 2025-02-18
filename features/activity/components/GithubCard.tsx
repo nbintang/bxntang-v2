@@ -40,12 +40,13 @@ export default function GithubContributionChartsCard({
               color: "#60a5fa",
             },
           }}
-          className="h-[360px] w-full"
+          className="h-[200px] w-full"
         >
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
+              className="text-[6px] sm:text-[10px]"
                 dataKey="date"
                 tickFormatter={(value) => {
                     const [year, month] = value.split("-");
@@ -83,6 +84,7 @@ export default function GithubContributionChartsCard({
                   const r = 24;
                   return (
                     <GitCommitHorizontal
+                      className="w-2 h-2"
                     key={`${payload.date}-${payload.contributions}`}
                       x={cx - r / 2}
                       y={cy - r / 2}

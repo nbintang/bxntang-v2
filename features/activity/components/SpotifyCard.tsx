@@ -42,7 +42,8 @@ export default function SpotifyCard({ className }: { className?: string }) {
     <ActivityCard
       icon={ActivityIcons.spotify}
       title={"Spotify"}
-      className={cn("relative overflow-hidden", className)}
+      titleColor={cn(nowPlaying ? "text-white" : "text-black")}
+      className={cn("relative overflow-hidden mix-blend-difference", className)}
     >
       {nowPlaying && (
         <>
@@ -87,7 +88,14 @@ export default function SpotifyCard({ className }: { className?: string }) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <p className="text-xl font-semibold text-white">
+                  <p
+                    className={cn(
+                      "font-semibold text-white",
+                      nowPlaying.title.trim().length > 20
+                        ? "text-base"
+                        : "text-xl"
+                    )}
+                  >
                     {nowPlaying.title}
                   </p>
                 </Link>
@@ -107,16 +115,33 @@ export default function SpotifyCard({ className }: { className?: string }) {
             )}
           </div>
         </div>
-        <div className="mt-4">
-          <h4 className="font-semibold mb-2 text-primary">Recent Activity</h4>
+        <div className="mt-4 mix-blend-normal ">
+          <h4
+            className={cn(
+              "font-semibold mb-2  ",
+              nowPlaying ? "text-white" : "text-black"
+            )}
+          >
+            Recent Activity
+          </h4>
           <ul className="space-y-2">
-            <li className="flex items-center gap-2 text-muted-foreground">
+            <li
+              className={cn(
+                "flex items-center gap-2 ",
+                nowPlaying ? "text-gray-300" : "text-muted-foreground"
+              )}
+            >
               <Music className="h-4 w-4" />
               <span className="text-sm">
                 Followed {followedArtists} artists
               </span>
             </li>
-            <li className="flex items-center gap-2 text-muted-foreground">
+            <li
+              className={cn(
+                "flex items-center gap-2 ",
+                nowPlaying ? "text-gray-300" : "text-muted-foreground"
+              )}
+            >
               <ListMusic className="h-4 w-4" />
               <span className="text-sm">Created {playlist} playlists</span>
             </li>
