@@ -3,7 +3,7 @@ import {
   getSpotifyFollowedArtist,
   getSpotifyNowPlaying,
   getSpotifyPlaylist,
-} from "./data";
+} from ".";
 
 const getFilteredSpotifyData = async (): Promise<SpotifyDataProps> => {
   const currentlyPlay = await getSpotifyNowPlaying();

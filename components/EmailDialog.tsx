@@ -62,7 +62,7 @@ export function EmailDialog() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Send Email</DialogTitle>
+          <DialogTitle className="text-black">Send Email</DialogTitle>
           <DialogDescription>
             Fill out the form below to send an message.
           </DialogDescription>
@@ -75,7 +75,7 @@ export function EmailDialog() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Who are You?" {...field} />
+                    <Input placeholder="Who are You?" className="text-black" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

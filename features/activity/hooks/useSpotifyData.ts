@@ -1,5 +1,5 @@
 "use client";
-import getFilteredSpotifyData from "@/features/activity/server/spotify/filterData";
+import getFilteredSpotifyData from "@/features/activity/data/spotify/filterData";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
 const useSpotifyData = (): UseQueryResult<SpotifyDataProps, Error> => {

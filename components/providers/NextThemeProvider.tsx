@@ -10,7 +10,7 @@ export function NextThemeProviders({
   return (
     <NextThemesProvider
       attribute="class"
-      defaultTheme="system"
+      defaultTheme="dark"
       enableSystem
       disableTransitionOnChange
       enableColorScheme

@@ -1,5 +1,5 @@
 import { timeAgo } from "@/helper/formatters";
-import { fetchProfilePsData } from "./data";
+import { fetchProfilePsData } from ".";
 
 export default async function getFilteredPsData(): Promise<FilteredPSDataProps> {
   try {
