@@ -4,23 +4,29 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
-
-
-
-
 export default function About() {
   return (
     <>
       <section className="w-full max-w-7xl mx-auto">
         <div className="text-black flex justify-start text-left max-w-4xl  px-6 lg:px-8">
           <div className="flex flex-col gap-2">
-            <BlurFade delay={0.2} inView className="font-medium relative font-display tracking-tight text-lg sm:text-2xl">
-              About
+            <BlurFade delay={0.2} inView>
+              <span className="block font-display text-base font-semibold text-neutral-950">
+               About
+              </span>
             </BlurFade>
-            <BlurFade delay={0.3} inView className="font-medium relative font-display tracking-tight text-3xl sm:text-6xl">
+            <BlurFade
+              delay={0.3}
+              inView
+              className="font-medium relative font-display tracking-tight text-3xl sm:text-6xl"
+            >
               Our strength is collaboration
             </BlurFade>
-            <BlurFade delay={0.4} inView className="text-muted-foreground text-base sm:text-xl">
+            <BlurFade
+              delay={0.4}
+              inView
+              className="text-muted-foreground text-base sm:text-xl"
+            >
               My strength lies in my ability to build scalable and efficient web
               applications by combining frontend and backend expertise. I thrive
               in collaborative environments, ensuring seamless integration
@@ -54,7 +60,10 @@ export default function About() {
                 const Icon = TechIcons[key as keyof typeof TechIcons];
                 return (
                   <li key={key}>
-                    <BlurFade className="flex flex-col sm:flex-row items-center gap-x-3" delay={0.1 * index}>
+                    <BlurFade
+                      className="flex flex-col sm:flex-row items-center gap-x-3"
+                      delay={0.1 * index}
+                    >
                       <Icon className="h-8 w-8 md:w-12 md:h-12" />
                       <p className="mt-2 text-xs sm:text-sm">{key}</p>
                     </BlurFade>

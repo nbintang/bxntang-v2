@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Container from "../../../Container";
 import navData from "../navData";
-import { forwardRef} from "react";
+
+import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface NavigationRowProps {
@@ -30,6 +31,9 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
   return (
     <Link
       href={href}
+      download={href.endsWith(".pdf")}
+      target={href.endsWith(".pdf") ? "_blank" : ""}
+      rel={href.endsWith(".pdf") ? "noopener noreferrer" : ""}
       className="group relative isolate -mx-6 bg-neutral-950 px-6 py-10 even:mt-px sm:mx-0 sm:px-0 sm:py-16 sm:odd:pr-16 sm:even:mt-0 sm:even:border-l sm:even:border-neutral-800 sm:even:pl-16"
       {...props}
     >
@@ -73,4 +77,3 @@ const Navigation = forwardRef<
 
 Navigation.displayName = "Navigation";
 export default Navigation;
-

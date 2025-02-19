@@ -24,8 +24,6 @@ const RootLayoutInner: React.FC<RootLayoutInnerProps> = ({ children }) => {
     closeRef,
     navRef,
     mobileView,
-    isPending,
-    showContent,
     shouldReduceMotion,
   } = useLayoutHeaderAnimation();
   return (
@@ -112,11 +110,9 @@ const RootLayoutInner: React.FC<RootLayoutInnerProps> = ({ children }) => {
           style={{ borderRadius: 40 }}
           className="relative flex-1 overflow-hidden bg-white"
         >
-          {isPending || !showContent ? null : (
             <motion.div layout className="relative isolate h-full w-full pt-14">
               {children}
             </motion.div>
-          )}
           {/* Efek Blank */}
         </motion.div>
       </div>

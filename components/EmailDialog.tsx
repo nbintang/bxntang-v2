@@ -53,6 +53,7 @@ export function EmailDialog() {
       loading: "Sending...",
       success: "Email sent successfully, the owner will get back to you.",
       error: "Error sending email",
+      className: "text-xs",
     });
     form.reset();
     setOpen(false);
@@ -75,7 +76,11 @@ export function EmailDialog() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Who are You?" className="text-black" {...field} />
+                    <Input
+                      placeholder="Who are You?"
+                      className="text-black"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -98,7 +103,9 @@ export function EmailDialog() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full  sm:w-auto">Send Message</Button>
+            <Button type="submit" className="w-full  sm:w-auto">
+              Send Message
+            </Button>
           </form>
         </Form>
       </DialogContent>

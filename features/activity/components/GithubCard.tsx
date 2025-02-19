@@ -36,7 +36,7 @@ export default function GithubContributionChartsCard({
         <ChartContainer
           config={{
             contributions: {
-              label: "Commit | Contribution",
+              label: "Commit | Contribution: ",
               color: "#60a5fa",
             },
           }}
