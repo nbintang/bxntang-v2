@@ -1,7 +1,8 @@
-import { mainURL } from "@/lib/seo/openGraph";
+
+import { mainURL } from "@/lib/seo";
 import type { MetadataRoute } from "next";
 
-const endPointUrls = ["/", "/blog", "/activity"];
+const endPointUrls = ["/", "/blog", "/activity", "/about"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const urls: MetadataRoute.Sitemap = endPointUrls.map((url) => ({

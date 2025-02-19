@@ -1,12 +1,15 @@
 import "@/styles/globals.css";
 import ReactQueryProvider from "@/components/providers/ReactQueryProvider";
-import { Metadata } from "next";
+
 import { Toaster } from "@/components/ui/sonner";
 import { EmailDialog } from "@/components/EmailDialog";
-import { generateMetadata, mainMetaData } from "@/lib/seo/metadata";
+import { generateMetadata } from "@/lib/seo";
 import NavbarLayout from "@/components/layouts/NavbarLayout";
 
-export const metadata: Metadata = generateMetadata(mainMetaData);
+export const metadata = generateMetadata({
+  title: "Bxntang",
+  description: "Software Engineer from Depok, Indonesia",
+});
 
 export default function RootLayout({
   children,
@@ -16,7 +19,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="">
       <body className={`font-mono  antialiased text-base  thin-scrollbar`}>
-        {/* <NextThemeProviders> */}
         <ReactQueryProvider>
           <main className="h-full bg-neutral-950 text-neutral-100">
             <NavbarLayout>{children}</NavbarLayout>
@@ -24,7 +26,6 @@ export default function RootLayout({
           <EmailDialog />
           <Toaster position="top-right" />
         </ReactQueryProvider>
-        {/* </NextThemeProviders> */}
       </body>
     </html>
   );

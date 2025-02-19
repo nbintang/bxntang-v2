@@ -25,7 +25,7 @@ export default function Home() {
             <h2 className="font-display text-5xl font-semibold tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
               Nur Bintang Hidayat
             </h2>
-            <p className="mt-6 text-base sm:text-xl text-neutral-600 indent-4">
+            <p className="mt-6 text-sm sm:text-xl text-neutral-600  indent-2">
             I&apos;m a fullstack web developer passionate about crafting
               seamless and intuitive digital experiences. With a strong focus on
               user-centric design, I build solutions that not only function
@@ -43,7 +43,7 @@ export default function Home() {
           blur="0px"
           className="flex justify-center items-center text-muted-foreground gap-2"
         >
-           <blockquote className="relative font-display text-3xl font-medium tracking-tight text-neutral-950 sm:text-4xl">
+           <blockquote className="relative font-display text-center text-lg font-medium tracking-tight text-neutral-950 sm:text-4xl">
               <p className="before:content-['“'] after:content-['”'] sm:before:absolute sm:before:right-full">
               
             <RandomQuotes />

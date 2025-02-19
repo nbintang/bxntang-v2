@@ -1,10 +1,10 @@
-import Container from "@/components/Container";
+
 import { BlurFade } from "@/components/ui/blur-fade";
 import { cn } from "@/lib/utils";
 
 export default function Blog() {
   return (
-    <Container className={cn("mt-24 sm:mt-32 lg:mt-40")}>
+  
       <BlurFade>
         <h1>
           <span className="block font-display text-base font-semibold text-neutral-950">
@@ -26,6 +26,5 @@ export default function Blog() {
           </p>
         </div>
       </BlurFade>
-    </Container>
   );
 }

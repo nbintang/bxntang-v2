@@ -1,3 +1,4 @@
+import { generateMetadata } from "@/lib/seo";
 import React from "react";
 
 export default function AboutLayout({
@@ -11,3 +12,9 @@ export default function AboutLayout({
     </main>
   );
 }
+
+export const metadata = generateMetadata({
+  title: "About Myself | Bxntang",
+  description: "Who am I and what is my purpose ?",
+  urlEndpoint: `/about`,
+});

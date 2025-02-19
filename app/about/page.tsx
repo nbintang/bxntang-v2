@@ -12,7 +12,7 @@ export default function About() {
           <div className="flex flex-col gap-2">
             <BlurFade delay={0.2} inView>
               <span className="block font-display text-base font-semibold text-neutral-950">
-               About
+                About
               </span>
             </BlurFade>
             <BlurFade
@@ -28,10 +28,9 @@ export default function About() {
               className="text-muted-foreground text-base sm:text-xl"
             >
               My strength lies in my ability to build scalable and efficient web
-              applications by combining frontend and backend expertise. I thrive
-              in collaborative environments, ensuring seamless integration
-              between UI/UX design and backend systems to create user-centric
-              digital experiences.
+              applications by combining frontend and backend expertise. I thrive in collaborative environments, ensuring
+              seamless integration between UI/UX design and backend systems with great SEO ability to
+              create user-centric digital experiences.
             </BlurFade>
           </div>
         </div>

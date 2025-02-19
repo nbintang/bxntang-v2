@@ -1,7 +1,5 @@
 import Container from "@/components/Container";
-import { generateMetadata } from "@/lib/seo/metadata";
-import { mainURL, metaDataOpenGraph } from "@/lib/seo/openGraph";
-import { Metadata } from "next";
+import { generateMetadata } from "@/lib/seo";
 import React from "react";
 
 export default function ActivityLayout({
@@ -11,17 +9,12 @@ export default function ActivityLayout({
 }) {
   return <Container className="mt-14 sm:mt-16 mb-3">{children}</Container>;
 }
-export const metadata: Metadata = generateMetadata({
-  title: "Bxntang | Activity",
-  description: "This is Bxntang activity page",
-  authors: {
-    name: "Nur Bintang Hidayat",
-    url: "https://github.com/nbintang",
-  },
-  openGraph: {
-    title: "Bxntang | Activity",
-    url: `${mainURL}/activity`,
-    description: "This is Bxntang activity page",
-    ...metaDataOpenGraph,
-  },
+
+
+
+
+export const metadata = generateMetadata({
+  title: "Activity | Bxntang",
+  description: "My Daily Activity",
+  urlEndpoint: `/about`,
 });
