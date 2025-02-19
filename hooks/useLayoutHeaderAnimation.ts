@@ -1,29 +1,45 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, useTransition } from "react";
 import { useReducedMotion } from "motion/react";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { usePathname } from "next/navigation";
 
 const useLayoutHeaderAnimation = () => {
   const panelId = useId();
-  const [expanded, setExpanded] = useState(false)
-  const openRef = useRef<HTMLButtonElement>(null!);
-  const closeRef = useRef<HTMLButtonElement>(null!);
-  const navRef = useRef<HTMLDivElement>(null);
+  const [expanded, setExpanded] = useState(false);
+  const openRef = useRef<HTMLButtonElement | null>(null);
+  const closeRef = useRef<HTMLButtonElement | null>(null);
+  const navRef = useRef<HTMLDivElement | null>(null);
   const shouldReduceMotion = useReducedMotion();
   const mobileView = useMediaQuery("(max-width: 768px)");
+  const [isPending, startTransition] = useTransition();
+  const pathname = usePathname();
+  const [showContent, setShowContent] = useState(false);
+
   useEffect(() => {
-    function onClick(event: MouseEvent) {
-      if (
-        (event.target as HTMLElement).closest("a")?.href ===
-        window.location.href
-      )
+    startTransition(() => {
+      setShowContent(false); // Tampilkan blank dulu
+      setTimeout(() => setShowContent(true), 300); // Delay 300ms sebelum render halaman
+    });
+  }, [pathname]);
+  
+  useEffect(() => {
+    function handleClick(event: MouseEvent) {
+      const target = event.target as HTMLElement;
+
+      // Pastikan yang diklik adalah <a> di dalam Navigation
+      if (target.closest("a") && navRef.current?.contains(target)) {
         setExpanded(false);
+      }
     }
-    window.addEventListener("click", onClick);
+
+    if (expanded) {
+      document.addEventListener("click", handleClick);
+    }
 
     return () => {
-      window.removeEventListener("click", onClick);
+      document.removeEventListener("click", handleClick);
     };
-  }, []);
+  }, [expanded]);
 
   useEffect(() => {
     if (expanded) {
@@ -38,6 +54,8 @@ const useLayoutHeaderAnimation = () => {
   }, [expanded]);
 
   return {
+    isPending,
+    showContent,
     panelId,
     expanded,
     setExpanded,

@@ -80,7 +80,7 @@ export default function SpotifyCard({ className }: { className?: string }) {
             )}
           </div>
           <div className="flex-1">
-            <h3 className="text-sm text-gray-300">Currently Playing</h3>
+            <h3 className={cn("text-sm ", nowPlaying ? "text-gray-300" : "text-muted-foreground")}>Currently Playing</h3>
             {nowPlaying ? (
               <>
                 <Link
@@ -99,17 +99,17 @@ export default function SpotifyCard({ className }: { className?: string }) {
                     {nowPlaying.title}
                   </p>
                 </Link>
-                <div className="flex items-center gap-2 flex-wrap">
+                <div className="flex items-center gap-x-2 flex-wrap">
                   <p className="text-xs text-gray-300">
                     {nowPlaying?.artists?.map((art) => art.name).join(", ")}
                   </p>
-                  <p className="text-xs text-gray-300">
+                  <p className={cn(" text-gray-300", nowPlaying?.albumName.trim().length > 15 ? "text-[9px]": "text-xs")}>
                     ({nowPlaying.albumName})
                   </p>
                 </div>
               </>
             ) : (
-              <p className="text-xl font-semibold text-gray-300">
+              <p className="text-base sm:text-lg font-semibold  text-gray-300">
                 Not playing anything right now
               </p>
             )}

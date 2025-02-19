@@ -11,7 +11,7 @@ export default function Home() {
           <BlurFade delay={0.2}>
             <span className=" text-pretty tracking-tighter ">
               <WordRotate
-                className="text-lg  sm:text-2xl  font-semibold  "
+                className="text-base  sm:text-2xl  font-medium  "
                 words={[
                   "Software Engineer",
                   "Full-Stack Developer",
@@ -25,8 +25,8 @@ export default function Home() {
             <h2 className="font-display text-5xl font-semibold tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
               Nur Bintang Hidayat
             </h2>
-            <p className="mt-6 text-base sm:text-xl text-neutral-600">
-              I&apos;m a fullstack web developer passionate about crafting
+            <p className="mt-6 text-base sm:text-xl text-neutral-600 indent-4">
+            I&apos;m a fullstack web developer passionate about crafting
               seamless and intuitive digital experiences. With a strong focus on
               user-centric design, I build solutions that not only function
               efficiently but also enhance engagement. Whether working on
@@ -43,11 +43,13 @@ export default function Home() {
           blur="0px"
           className="flex justify-center items-center text-muted-foreground gap-2"
         >
-          <p className="text-sm font-medium  pt-5 text-center  whitespace-normal break-words sm:text-2xl  lg:text-3xl xl:text-[30px]">
-            &quot;
+           <blockquote className="relative font-display text-3xl font-medium tracking-tight text-neutral-950 sm:text-4xl">
+              <p className="before:content-['“'] after:content-['”'] sm:before:absolute sm:before:right-full">
+              
             <RandomQuotes />
-            &quot;
-          </p>
+            
+              </p>
+            </blockquote>
         </BlurFade>
       </div>
     </Container>

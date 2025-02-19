@@ -11,7 +11,8 @@ interface HeaderProps {
   icon: React.ElementType;
   expanded: boolean;
   onToggle: () => void;
-  toggleRef: React.RefObject<HTMLButtonElement>;
+  toggleRef: React.RefObject<HTMLButtonElement | null>;
+  logoRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -20,6 +21,7 @@ const Header: React.FC<HeaderProps> = ({
   icon: Icon,
   expanded,
   onToggle,
+  logoRef,
   toggleRef,
 }) => {
   const setOpenEmail = useEmailDialog((state) => state.setOpen);
@@ -29,20 +31,19 @@ const Header: React.FC<HeaderProps> = ({
       <div className="flex items-center justify-between">
         <Link href="/" aria-label="Home">
           <LogoLayout
+            ref={logoRef}
             invert={invert}
             className="cursor-pointer hover:text-destructive transition-all duration-200"
           >
-            BXNTANG
+            Bxntang
           </LogoLayout>
         </Link>
         <div className="flex items-center gap-x-2 sm:gap-x-4 lg:gap-x-8">
           <Button
             variant={invert ? "secondary" : "black"}
             type="button"
-            className={cn(
-              "rounded-full font-semibold  sm:px-6",
-              "h-9 sm:h-10 px-3"
-            )}
+            size={"sm"}
+            className={cn("rounded-full font-semibold  ")}
             onClick={() => setOpenEmail(true)}
           >
             Contact Me
@@ -55,7 +56,10 @@ const Header: React.FC<HeaderProps> = ({
             aria-expanded={expanded}
             aria-controls={panelId}
             size={"icon"}
-            className={cn("group rounded-full  transition ", !invert && "border")}
+            className={cn(
+              "group rounded-full  transition ",
+              !invert && "border"
+            )}
             aria-label="Toggle navigation"
           >
             <Icon

@@ -24,6 +24,8 @@ const RootLayoutInner: React.FC<RootLayoutInnerProps> = ({ children }) => {
     closeRef,
     navRef,
     mobileView,
+    isPending,
+    showContent,
     shouldReduceMotion,
   } = useLayoutHeaderAnimation();
   return (
@@ -54,7 +56,9 @@ const RootLayoutInner: React.FC<RootLayoutInnerProps> = ({ children }) => {
             id={panelId}
             className={cn(
               "relative z-50  bg-neutral-950 pt-2",
-              expanded && mobileView ? "overflow-y-auto overflow-x-hidden" : "overflow-hidden",
+              expanded && mobileView
+                ? "overflow-y-auto overflow-x-hidden"
+                : "overflow-hidden",
               expanded ? "h-[100dvh] sm:h-auto" : "h-[0.5rem]"
             )}
             aria-hidden={expanded ? undefined : "true"}
@@ -76,7 +80,7 @@ const RootLayoutInner: React.FC<RootLayoutInnerProps> = ({ children }) => {
                   }}
                 />
               </div>
-              <Navigation />
+              <Navigation ref={navRef} />
               <div className="relative bg-neutral-950 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-neutral-800">
                 <Container>
                   <div className="grid grid-cols-1 gap-y-10 pb-16 pt-10 sm:grid-cols-2 sm:pt-16">
@@ -108,9 +112,12 @@ const RootLayoutInner: React.FC<RootLayoutInnerProps> = ({ children }) => {
           style={{ borderRadius: 40 }}
           className="relative flex-1 overflow-hidden bg-white"
         >
-          <motion.div layout className="relative isolate h-full w-full pt-14">
-        {children}
-          </motion.div>
+          {isPending || !showContent ? null : (
+            <motion.div layout className="relative isolate h-full w-full pt-14">
+              {children}
+            </motion.div>
+          )}
+          {/* Efek Blank */}
         </motion.div>
       </div>
     </MotionConfig>

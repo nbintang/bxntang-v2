@@ -1,4 +1,3 @@
-import Container from "@/components/Container";
 import React from "react";
 
 export default function AboutLayout({
@@ -6,5 +5,9 @@ export default function AboutLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <Container className="mt-14 sm:mt-16 text-black">{children}</Container>;
+  return (
+    <main className="mt-14 sm:mt-16  lg:mt-20 flex flex-col gap-6 justify-between min-h-[calc(100dvh-9rem)]">
+      {children}
+    </main>
+  );
 }
