@@ -20,7 +20,7 @@ export default function About() {
               inView
               className="font-medium relative font-display tracking-tight text-3xl sm:text-6xl"
             >
-              Our strength is collaboration
+              My strength is collaboration
             </BlurFade>
             <BlurFade
               delay={0.4}

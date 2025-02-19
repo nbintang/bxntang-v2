@@ -16,13 +16,14 @@ export default function Blog() {
               "mt-6 block max-w-5xl font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-6xl"
             )}
           >
-            The latest articles and news
+            My latest articles and news
           </span>
         </h1>
         <div className={cn("mt-6 max-w-3xl text-xl text-neutral-600")}>
           <p>
-            Stay up-to-date with the latest industry news as our marketing teams
-            finds new ways to re-purpose old CSS tricks articles.
+            Stay up-to-date with the latest articles and news from my blog. I
+            write about web development, software engineering, and personal
+            experiences.
           </p>
         </div>
       </BlurFade>
