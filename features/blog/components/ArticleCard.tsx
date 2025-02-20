@@ -35,7 +35,9 @@ const ArticleCard = React.forwardRef<HTMLDivElement, ArticleCardProps>(
         <div className="absolute inset-0 bg-black/50 " />
 
         <CardContent className="relative min-h-[50vh] flex flex-col justify-end p-6 text-white">
-          <h2 className="text-xl sm:text-2xl font-bold mb-2 leading-tight">{title}</h2>
+          <h2 className="text-xl sm:text-2xl font-bold mb-2 leading-tight">
+            {title}
+          </h2>
           <p className="mb-4 line-clamp-2 text-gray-200">{excerpt}</p>
           <div className="flex items-center text-sm">
             <CalendarDays className="w-4 h-4 mr-2" />
