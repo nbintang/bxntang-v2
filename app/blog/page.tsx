@@ -1,10 +1,10 @@
-
+import CarouselDApiDemo from "@/features/blog/components/Carousel";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { cn } from "@/lib/utils";
 
 export default function Blog() {
   return (
-  
+    <div className=" gap-8">
       <BlurFade>
         <h1>
           <span className="block font-display text-base font-semibold text-neutral-950">
@@ -27,5 +27,7 @@ export default function Blog() {
           </p>
         </div>
       </BlurFade>
+      <CarouselDApiDemo className="my-5 sm:my-0 sm:mt-5" />
+    </div>
   );
 }

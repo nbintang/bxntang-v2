@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
   return (
-    <Container className={cn("mt-24 sm:mt-32 lg:mt-40")}>{children}</Container>
+    <Container className={cn("mt-24 sm:mt-32 lg:mt-32")}>{children}</Container>
   );
 }
 export const metadata = generateMetadata({
