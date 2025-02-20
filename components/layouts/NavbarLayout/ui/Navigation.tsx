@@ -4,6 +4,7 @@ import navData from "../navData";
 
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 interface NavigationRowProps {
   children: React.ReactNode;
@@ -26,9 +27,22 @@ interface NavigationItemProps
 const NavigationItem: React.FC<NavigationItemProps> = ({
   href,
   children,
+
   ...props
 }) => {
-  return (
+  const pathname = usePathname();
+  const isActive = pathname === href;
+
+  return isActive ? (
+    <span
+      className={cn(
+        "group relative isolate -mx-6 bg-neutral-950 px-6 py-10 text-neutral-500 cursor-not-allowed sm:mx-0 sm:px-0 sm:py-16 sm:odd:pr-16 sm:even:mt-0 sm:even:border-l sm:even:border-neutral-800 sm:even:pl-16"
+      )}
+    >
+      {children}
+      <span className="absolute inset-y-0 -z-10 w-screen bg-neutral-900 opacity-100 transition group-odd:right-0 group-even:left-0 " />
+    </span>
+  ) : (
     <Link
       href={href}
       download={href.endsWith(".pdf")}
@@ -72,8 +86,8 @@ const Navigation = forwardRef<
         </NavigationRow>
       ))}
     </nav>
+
   );
 });
-
 Navigation.displayName = "Navigation";
 export default Navigation;
