@@ -1,67 +1,41 @@
-"use server";
+import { timeAgo } from "@/helper/formatters";
+import { getEndpointPsData } from "./endpoint";
 
-// this is only for server side integration
-import {
-  getProfileFromUserName,
-  getRecentlyPlayedGames,
-  getTitleTrophies,
-  getUserTitles,
-  ProfileFromUserNameResponse,
-  RecentlyPlayedGame,
-  TitleTrophiesResponse,
-} from "psn-api";
-import getPlaystationToken from "./getAccessToken";
-
-const user = {
-  username: "Ken21Kaneki",
-  id: "1556944157329331522",
-};
-
-type ProfilePsDataProps = {
-  profile: ProfileFromUserNameResponse;
-  recent: RecentlyPlayedGame[];
-  gameTitles: TitleTrophiesResponse | null;
-};
-export async function fetchProfilePsData(): Promise<ProfilePsDataProps> {
+export default async function getFilteredPsData(): Promise<FilteredPSDataProps> {
   try {
-    const authorization = await getPlaystationToken();
-    if (!authorization) throw new Error("Failed to retrieve PlayStation token");
+    const { profile, gameTitles, recent } = await getEndpointPsData();
+    if (!(profile && gameTitles && recent))
+      throw new Error("Failed to fetch data");
+    const trophySum = profile?.profile?.trophySummary;
+    const totalTrophiesExist = Object.values(
+      trophySum?.earnedTrophies ?? {}
+    ).reduce((a, b) => a + b, 0);
 
-    const profile = await getProfileFromUserName(authorization, user.username);
-    const recentlyPlayedGames = await getRecentlyPlayedGames(authorization, {
-      limit: 10,
-      categories: ["ps4_game"],
+    const trophies = gameTitles?.trophies.slice(-3).sort((a, b) => {
+      const order = {
+        platinum: 1,
+        gold: 2,
+        silver: 3,
+        bronze: 4,
+      };
+      return order[a.trophyType] - order[b.trophyType];
     });
+    const isOnline = profile.profile.primaryOnlineStatus === "online";
 
-    const recentlyPlayedGame = recentlyPlayedGames.data
-      .gameLibraryTitlesRetrieve.games as RecentlyPlayedGame[];
-
-    const titles = await getUserTitles(authorization, user.id);
-
-    const findRecentlyPlayedGameTitles = titles.trophyTitles.find(
-      (t) =>
-        t.trophyTitleName.toLowerCase().trim() ===
-        recentlyPlayedGame[0]?.name.toLowerCase().trim()
-    );
-
-    const gameTitles = findRecentlyPlayedGameTitles
-      ? await getTitleTrophies(
-          authorization,
-          findRecentlyPlayedGameTitles.npCommunicationId,
-          "all",
-          {
-            npServiceName: findRecentlyPlayedGameTitles.npServiceName,
-          }
-        )
-      : null;
-
+    const lastPlayedTime = timeAgo(recent[0]?.lastPlayedDateTime || "");
+    const gameName = recent[0]?.name;
+    const gameImg = recent[0]?.image?.url;
     return {
-      profile,
-      recent: recentlyPlayedGame,
-      gameTitles,
+      trophies,
+      totalTrophiesExist,
+      isOnline,
+      lastPlayedTime,
+      gameName,
+      gameImg,
+      trophySum,
     };
   } catch (error) {
-    console.error("Error in getProfilePsData:", error);
+    console.error("Error fetching data:", error);
     throw error;
   }
 }

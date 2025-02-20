@@ -3,7 +3,7 @@
 import type React from "react";
 import { usePathname } from "next/navigation";
 import { motion, MotionConfig } from "motion/react";
-import Container from "@/components/Container";
+import Container from "@/components/layouts/Container";
 import { AlignRight, XIcon } from "lucide-react";
 import OfficesLayout from "@/components/layouts/NavbarLayout/ui/AddressLayout";
 import SocialMediaLayout from "@/components/layouts/NavbarLayout/ui/SocialMediaLayout";
@@ -113,7 +113,6 @@ const RootLayoutInner: React.FC<RootLayoutInnerProps> = ({ children }) => {
             <motion.div layout className="relative isolate h-full w-full pt-14">
               {children}
             </motion.div>
-          {/* Efek Blank */}
         </motion.div>
       </div>
     </MotionConfig>

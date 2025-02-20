@@ -1,5 +1,5 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import getFilteredPsData from "@/features/activity/data/playstation/filterData";
+import getFilteredPsData from "@/features/activity/data/playstation";
 
 const usePlaystationData = (): UseQueryResult<FilteredPSDataProps, Error> => {
   return useQuery({

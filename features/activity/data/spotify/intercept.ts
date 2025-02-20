@@ -5,7 +5,7 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 import { revalidateTag } from "next/cache";
-import getSpotifyAccessToken from "./getAccessToken";
+import getSpotifyAccessToken from "./token";
 
 
 interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {

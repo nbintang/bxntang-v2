@@ -75,7 +75,7 @@ export function EmailDialog() {
             Send Email
           </DialogTitle>
           <DialogDescription>
-            Fill out the form below to send an message.
+            Fill out the form below to send a message.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -106,7 +106,7 @@ export function EmailDialog() {
                 <FormItem>
                   <FormControl>
                     <AnimatedTextarea
-                      label="Whacu needin'?"
+                      label="Whachu needin'?"
                       rows={6}
                       className="group-first:rounded-t-none focus-visible:ring-0 focus-visible:ring-offset-0"
                       {...field}

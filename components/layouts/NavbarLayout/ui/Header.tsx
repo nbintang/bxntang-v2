@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Container from "../../../Container";
+import Container from "../../Container";
 import LogoLayout from "./LogoLayout";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";

@@ -32,7 +32,7 @@ export default function SpotifyCard({ className }: { className?: string }) {
     );
   }
 
-  if (isLoading || !data) {
+  if (isLoading || !data || data.nowPlaying?.type === "ad") {
     return <SkeletonCard className={className} />;
   }
 
@@ -62,15 +62,23 @@ export default function SpotifyCard({ className }: { className?: string }) {
       {/* Content */}
       <div className="relative z-20">
         <div className="flex items-center gap-4">
-          <div className="rounded-md w-20 h-20 overflow-hidden bg-gray-200 flex-shrink-0">
+          <div className="rounded-md relative group w-20 h-20 overflow-hidden  bg-gray-200 flex-shrink-0 flex items-center justify-center">
             {nowPlaying ? (
-              <Image
-                src={nowPlaying.image}
-                alt="Album thumbnail"
-                width={80}
-                height={80}
-                className="w-full h-full object-cover"
-              />
+              <Link
+                href={nowPlaying.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={nowPlaying.image}
+                  alt="Album thumbnail"
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover  aspect-square"
+                />
+                {/* blur hover */}
+                <div className="absolute inset-0 z-10 bg-black/50 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+              </Link>
             ) : (
               <div className="w-full h-full grid place-items-center">
                 <h1 className="text-2xl font-semibold text-muted-foreground">
@@ -80,7 +88,14 @@ export default function SpotifyCard({ className }: { className?: string }) {
             )}
           </div>
           <div className="flex-1">
-            <h3 className={cn("text-sm ", nowPlaying ? "text-gray-300" : "text-muted-foreground")}>Currently Playing</h3>
+            <h3
+              className={cn(
+                "text-sm ",
+                nowPlaying ? "text-gray-300" : "text-muted-foreground"
+              )}
+            >
+              Currently Playing
+            </h3>
             {nowPlaying ? (
               <>
                 <Link
@@ -103,7 +118,14 @@ export default function SpotifyCard({ className }: { className?: string }) {
                   <p className="text-xs text-gray-300">
                     {nowPlaying?.artists?.map((art) => art.name).join(", ")}
                   </p>
-                  <p className={cn(" text-gray-300", nowPlaying?.albumName.trim().length > 15 ? "text-[9px]": "text-xs")}>
+                  <p
+                    className={cn(
+                      " text-gray-300",
+                      nowPlaying?.albumName.trim().length > 15
+                        ? "text-[9px]"
+                        : "text-xs"
+                    )}
+                  >
                     ({nowPlaying.albumName})
                   </p>
                 </div>

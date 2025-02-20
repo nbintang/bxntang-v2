@@ -1,4 +1,4 @@
-import Container from "@/components/Container";
+import Container from "@/components/layouts/Container";
 import { BlurFade } from "@/components/ui/blur-fade";
 import Link from "next/link";
 

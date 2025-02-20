@@ -1,7 +1,7 @@
 import RandomQuotes from "@/features/home/components/RandomQuotes";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { WordRotate } from "@/components/ui/word-rotate";
-import Container from "@/components/Container";
+import Container from "@/components/layouts/Container";
 
 export default function Home() {
   return (

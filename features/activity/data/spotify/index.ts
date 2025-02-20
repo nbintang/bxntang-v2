@@ -1,20 +1,31 @@
+import getSpotifyEndpoint from "./endpoint";
 
-import spotifyAPI from "./intercept";
+const getFilteredSpotifyData = async (): Promise<SpotifyDataProps> => {
+  const currentlyPlay = await getSpotifyEndpoint("/player/currently-playing");
+  const playlist = await getSpotifyEndpoint("/playlists?limit=20&offset=1");
+  const followedArtists = await getSpotifyEndpoint("/following?type=artist");
+  if (!currentlyPlay.is_playing) {
+    return {
+      nowPlaying: null,
+      playlist: followedArtists.artists.items.length,
+      followedArtists: playlist?.total,
+    };
+  }
+  const filteredCurrentlyPlay = {
+    title: currentlyPlay.item.name,
+    image: currentlyPlay.item.album.images[0].url,
+    albumName: currentlyPlay.item.album.name,
+    isPlayed: currentlyPlay.is_playing,
+    type: currentlyPlay.currently_playing_type,
+    url: currentlyPlay.item.external_urls.spotify,
+    actions: currentlyPlay.actions,
+    artists: currentlyPlay.item.album.artists || [],
+  };
+  return {
+    nowPlaying: filteredCurrentlyPlay,
+    playlist: followedArtists.artists.items.length,
+    followedArtists: playlist?.total,
+  };
+};
 
-// URL Endpoints
-const SPOTIFY_NOW_PLAYING_ENDPOINT =
-  "https://api.spotify.com/v1/me/player/currently-playing";
-const SPOTIFY_PLAYLIST_ENDPOINT =
-  "https://api.spotify.com/v1/me/playlists?limit=20&offset=1";
-const SPOTIFY_FOLLOWED_ARTIST_ENDPOINT =
-  "https://api.spotify.com/v1/me/following?type=artist";
-
-// Fetch Endpoints
-export const getSpotifyNowPlaying = async () =>
-  (await spotifyAPI.get(SPOTIFY_NOW_PLAYING_ENDPOINT)).data;
-
-export const getSpotifyPlaylist = async () =>
-  (await spotifyAPI.get(SPOTIFY_PLAYLIST_ENDPOINT)).data;
-
-export const getSpotifyFollowedArtist = async () =>
-  (await spotifyAPI.get(SPOTIFY_FOLLOWED_ARTIST_ENDPOINT)).data;
+export default getFilteredSpotifyData;

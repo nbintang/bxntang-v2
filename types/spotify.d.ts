@@ -1,13 +1,16 @@
+
 interface SpotifyDataProps {
   nowPlaying: NowPlaying | null;
   playlist: number;
   followedArtists: number;
 }
 
+type TypeTrack  = "ad" | "track";
 interface NowPlaying {
   title: string;
   image: string;
   albumName: string;
+  type: TypeTrack;
   isPlayed: boolean;
   url: string;
   actions: Actions;

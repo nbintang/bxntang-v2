@@ -1,4 +1,4 @@
-import Container from "@/components/Container";
+import Container from "@/components/layouts/Container";
 import { generateMetadata } from "@/lib/seo";
 import React from "react";
 
