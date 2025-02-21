@@ -10,11 +10,11 @@ const navData = {
   address: [
     {
       city: "Depok",
-      details: "Beji, Depok, Jawa Barat",
+      details: "Beji, Jawa Barat, Indonesia",
     },
     {
       city: "Depok",
-      details: "Kelapa Dua, Depok, Jawa Barat",
+      details: "Kelapa Dua, Jawa Barat, Indonesia",
     },
   ],
   contact: {
