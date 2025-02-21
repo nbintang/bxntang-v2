@@ -11,12 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import sendEmail, { MailProps } from "@/lib/mail";
 import { useEmailDialog } from "@/hooks/useEmailDialog";
 import { useShallow } from "zustand/shallow";
@@ -44,7 +39,7 @@ export function EmailDialog() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       from: "",
-     message : "",
+      message: "",
     },
   });
 
@@ -116,13 +111,17 @@ export function EmailDialog() {
               )}
             />
             <div className="flex justify-center gap-2">
-             {"["}
-             {Object.entries(form.formState.errors).map(([key, value]) => (
-                <p key={key} className="text-xs mt-1 text-red-500">
-                  {value.message}
-                </p>
-              ))}
-             {"]"}
+              {form.formState.errors && (
+                <>
+                  {"["}
+                  {Object.entries(form.formState.errors).map(([key, value]) => (
+                    <p key={key} className="text-xs mt-1 text-red-500">
+                      {value.message}
+                    </p>
+                  ))}
+                  {"]"}
+                </>
+              )}
             </div>
             <Button
               type="submit"
