@@ -115,12 +115,14 @@ export function EmailDialog() {
                 </FormItem>
               )}
             />
-            <div className="flex justify-between">
-              {Object.entries(form.formState.errors).map(([key, value]) => (
+            <div className="flex justify-center gap-2">
+             {"["}
+             {Object.entries(form.formState.errors).map(([key, value]) => (
                 <p key={key} className="text-xs mt-1 text-red-500">
                   {value.message}
                 </p>
               ))}
+             {"]"}
             </div>
             <Button
               type="submit"

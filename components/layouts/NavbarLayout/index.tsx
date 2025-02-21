@@ -25,9 +25,12 @@ const RootLayoutInner: React.FC<RootLayoutInnerProps> = ({ children }) => {
     navRef,
     mobileView,
     shouldReduceMotion,
+    handleToggle
   } = useLayoutHeaderAnimation();
+
+
   return (
-    <MotionConfig transition={shouldReduceMotion ? { duration: 0 } : undefined}>
+    <MotionConfig transition={shouldReduceMotion ? { duration: 10 } : undefined}>
       <div className="flex flex-col min-h-screen">
         {/* Header */}
         <header>
@@ -41,12 +44,7 @@ const RootLayoutInner: React.FC<RootLayoutInnerProps> = ({ children }) => {
               icon={AlignRight}
               toggleRef={openRef}
               expanded={expanded}
-              onToggle={() => {
-                setExpanded((expanded) => !expanded);
-                window.setTimeout(() =>
-                  closeRef.current?.focus({ preventScroll: true })
-                );
-              }}
+              onToggle={handleToggle}
             />
           </div>
           <motion.div
@@ -70,10 +68,10 @@ const RootLayoutInner: React.FC<RootLayoutInnerProps> = ({ children }) => {
                   icon={XIcon}
                   toggleRef={closeRef}
                   expanded={expanded}
-                  onToggle={() => {
+                  onToggle={() =>{
                     setExpanded((expanded) => !expanded);
                     window.setTimeout(() =>
-                      openRef.current?.focus({ preventScroll: true })
+                      closeRef.current?.focus({ preventScroll: true })
                     );
                   }}
                 />
@@ -110,9 +108,9 @@ const RootLayoutInner: React.FC<RootLayoutInnerProps> = ({ children }) => {
           style={{ borderRadius: 40 }}
           className="relative flex-1 overflow-hidden bg-white"
         >
-            <motion.div layout className="relative isolate h-full w-full pt-14">
-              {children}
-            </motion.div>
+          <motion.div layout className="relative isolate h-full w-full pt-14">
+            {children}
+          </motion.div>
         </motion.div>
       </div>
     </MotionConfig>

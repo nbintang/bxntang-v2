@@ -16,7 +16,7 @@ export default function TechList() {
             className="flex flex-col sm:flex-row items-center gap-x-3"
             delay={0.1 * index}
           >
-            <Icon className="h-8 w-8 md:w-12 md:h-12" />
+            <Icon className="h-8 w-8 md:w-12 md:h-12 rounded-md" />
             <p className="mt-2 text-xs sm:text-sm">{key}</p>
           </BlurFade>
         </li>

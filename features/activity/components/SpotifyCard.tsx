@@ -105,7 +105,7 @@ export default function SpotifyCard({ className }: { className?: string }) {
                 >
                   <p
                     className={cn(
-                      "font-semibold text-white",
+                      "font-semibold text-white hover:opacity-80 transition-opacity duration-300",
                       nowPlaying.title.trim().length > 20
                         ? "text-base"
                         : "text-xl"

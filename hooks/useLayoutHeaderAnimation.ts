@@ -14,6 +14,22 @@ const useLayoutHeaderAnimation = () => {
   const mobileView = useMediaQuery("(max-width: 768px)");
   const pathname = usePathname();
 
+  const handleToggle = () => {
+    if (window.scrollY === 0) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setExpanded((expanded) => !expanded);
+      window.setTimeout(() => closeRef.current?.focus({ preventScroll: true }));
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setTimeout(() => {
+        setExpanded((expanded) => !expanded);
+        window.setTimeout(() =>
+          closeRef.current?.focus({ preventScroll: true })
+        );
+      }, 300);
+    }
+  };
+
   useEffect(() => {
     function handleClick(event: MouseEvent) {
       const target = event.target as HTMLElement;
@@ -28,7 +44,7 @@ const useLayoutHeaderAnimation = () => {
           setExpanded(false);
 
           if (link.href === window.location.href) {
-            toast.loading("Loading...", {
+            toast.loading("Wait...", {
               id: "loading",
               position: mobileView ? "bottom-center" : "top-right",
             });
@@ -36,7 +52,7 @@ const useLayoutHeaderAnimation = () => {
               toast.dismiss("loading");
             }, 500);
           } else {
-            toast.loading("Loading...", {
+            toast.loading("Wait...", {
               id: "loading",
               position: mobileView ? "bottom-center" : "top-right",
             });
@@ -53,6 +69,7 @@ const useLayoutHeaderAnimation = () => {
       document.removeEventListener("click", handleClick);
     };
   }, [expanded, mobileView]);
+  
   useEffect(() => {
     toast.dismiss("loading");
   }, [pathname]);
@@ -73,6 +90,7 @@ const useLayoutHeaderAnimation = () => {
     navRef,
     mobileView,
     shouldReduceMotion,
+    handleToggle
   };
 };
 
