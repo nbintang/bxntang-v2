@@ -4,8 +4,10 @@ import { getEndpointPsData } from "./endpoint";
 export default async function getFilteredPsData(): Promise<FilteredPSDataProps> {
   try {
     const { profile, gameTitles, recent } = await getEndpointPsData();
+    
     if (!(profile && gameTitles && recent))
       throw new Error("Failed to fetch data");
+
     const trophySum = profile?.profile?.trophySummary;
     const totalTrophiesExist = Object.values(
       trophySum?.earnedTrophies ?? {}
@@ -20,8 +22,8 @@ export default async function getFilteredPsData(): Promise<FilteredPSDataProps> 
       };
       return order[a.trophyType] - order[b.trophyType];
     });
-    const isOnline = profile.profile.primaryOnlineStatus === "online";
 
+    const isOnline = profile.profile.primaryOnlineStatus === "online"; 
     const lastPlayedTime = timeAgo(recent[0]?.lastPlayedDateTime || "");
     const gameName = recent[0]?.name;
     const gameImg = recent[0]?.image?.url;

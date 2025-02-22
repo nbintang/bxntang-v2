@@ -16,7 +16,7 @@ export default function SpotifyCard({ className }: { className?: string }) {
     isError,
     isLoading,
     error,
-  }: UseQueryResult<SpotifyDataProps, Error> = useSpotifyData();
+  }: UseQueryResult<SpotifyDataProps | null, Error> = useSpotifyData();
 
   if (isError) {
     return (
@@ -32,7 +32,7 @@ export default function SpotifyCard({ className }: { className?: string }) {
     );
   }
 
-  if (isLoading || !data || data.nowPlaying?.type === "ad") {
+  if (isLoading || !data ) {
     return <SkeletonCard className={className} />;
   }
 
@@ -120,7 +120,7 @@ export default function SpotifyCard({ className }: { className?: string }) {
                   </p>
                   <p
                     className={cn(
-                      " text-gray-300",
+                      " text-gray-300  text-ellipsis overflow-hidden whitespace-nowrap",
                       nowPlaying?.albumName.trim().length > 15
                         ? "text-[9px]"
                         : "text-xs"

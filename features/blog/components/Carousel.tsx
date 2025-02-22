@@ -13,6 +13,7 @@ import ArticleCard from "@/features/blog/components/ArticleCard";
 import { Button } from "@/components/ui/button";
 import { dummyData } from "../dummy";
 import { toast } from "sonner";
+import { ChevronsRight } from "lucide-react";
 
 export default function CarouselDApiDemo({
   className,
@@ -30,6 +31,11 @@ export default function CarouselDApiDemo({
     api.on("select", () => setCurrent(api.selectedScrollSnap() + 1));
   }, [api]);
 
+  const handleAppearToast = () =>
+    toast.info("We're currently working on this feature, stay tuned!", {
+      className: "text-xs",
+    });
+
   return (
     <div className={cn("w-full h-full", className)}>
       <Carousel setApi={setApi} opts={{ loop: true }}>
@@ -38,14 +44,7 @@ export default function CarouselDApiDemo({
             ({ author, date, description, image, title }, index) => (
               <CarouselItem key={index} className="h-full ">
                 <ArticleCard
-                  onClick={() =>
-                    toast.info(
-                      "We're currently working on this feature, stay tuned!",
-                      {
-                        className: "text-xs",
-                      }
-                    )
-                  }
+                  onClick={handleAppearToast}
                   className="h-full min-h-[50vh] flex"
                   title={title}
                   excerpt={description}
@@ -58,18 +57,29 @@ export default function CarouselDApiDemo({
           )}
         </CarouselContent>
       </Carousel>
-      <div className=" text-center">
-        {Array.from({ length: count }).map((_, index) => (
-          <Button
-            key={index}
-            variant="ghost"
-            size="sm"
-            className={`w-2 h-2 p-0 mx-1 rounded-full ${
-              index === current - 1 ? "bg-primary" : "bg-muted"
-            }`}
-            onClick={() => api?.scrollTo(index)}
-          />
-        ))}
+      <div className="flex justify-between">
+        <div className=" text-center">
+          {Array.from({ length: count }).map((_, index) => (
+            <Button
+              key={index}
+              variant="ghost"
+              size="sm"
+              className={`w-2 h-2 p-0 mx-1 rounded-full ${
+                index === current - 1 ? "bg-primary" : "bg-muted"
+              }`}
+              onClick={() => api?.scrollTo(index)}
+            />
+          ))}
+        </div>
+        <Button
+          variant={"link"}
+          size="sm"
+          className="text-primary hover:text-primary flex  gap-2 items-center"
+          onClick={handleAppearToast}
+        >
+          <span>See More</span>
+          <ChevronsRight className="w-4 h-4" />
+        </Button>
       </div>
     </div>
   );

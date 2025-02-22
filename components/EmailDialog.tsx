@@ -111,7 +111,7 @@ export function EmailDialog() {
               )}
             />
             <div className="flex justify-center gap-2">
-              {form.formState.errors && (
+              {form.formState.errors.message && (
                 <>
                   {"["}
                   {Object.entries(form.formState.errors).map(([key, value]) => (
