@@ -10,6 +10,7 @@ import Link from "next/link";
 import React from "react";
 import SkeletonCard from "./SkeletonCard";
 import AnimatedBeatIcon from "@/components/icons/BeatIcon";
+import useMediaQuery from "@/hooks/useMediaQuery";
 export default function SpotifyCard({ className }: { className?: string }) {
   const {
     data,
@@ -17,7 +18,7 @@ export default function SpotifyCard({ className }: { className?: string }) {
     isLoading,
     error,
   }: UseQueryResult<SpotifyDataProps | null, Error> = useSpotifyData();
-
+const mobileView = useMediaQuery("(max-width: 768px)");
   if (isError) {
     return (
       <ActivityCard
@@ -123,10 +124,9 @@ export default function SpotifyCard({ className }: { className?: string }) {
                   </p>
                   <p
                     className={cn(
-                      " text-gray-300  text-ellipsis overflow-hidden whitespace-nowrap",
-                      nowPlaying?.albumName.trim().length > 15
-                        ? "text-[9px]"
-                        : "text-xs"
+                      "text-gray-300  min-w-0 text-xs ",
+                      nowPlaying.albumName.trim().length > 20 && mobileView &&
+                        " max-w-[100px] truncate overflow-hidden whitespace-nowrap text-ellipsis"
                     )}
                   >
                     ({nowPlaying.albumName})
