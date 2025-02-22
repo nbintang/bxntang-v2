@@ -1,6 +1,4 @@
-"use server";
-
-
+import "server-only";
 import {
   AuthTokensResponse,
   exchangeCodeForAccessToken,
