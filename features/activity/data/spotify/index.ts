@@ -4,8 +4,8 @@ const getFilteredSpotifyData = async (): Promise<SpotifyDataProps> => {
   const currentlyPlay = await getSpotifyEndpoint("/player/currently-playing");
   const playlist = await getSpotifyEndpoint("/playlists?limit=20&offset=1");
   const followedArtists = await getSpotifyEndpoint("/following?type=artist");
-
-  if (!currentlyPlay.is_playing) {
+  console.log({currentlyPlay, playlist, followedArtists});
+  if (!currentlyPlay.is_playing || !currentlyPlay.item) {
     return {
       nowPlaying: null,
       playlist: followedArtists.artists.items.length,
@@ -20,7 +20,7 @@ const getFilteredSpotifyData = async (): Promise<SpotifyDataProps> => {
     type: currentlyPlay.currently_playing_type,
     url: currentlyPlay.item.external_urls.spotify,
     actions: currentlyPlay.actions,
-    artists: currentlyPlay.item.album.artists || [],
+    artists: currentlyPlay.item.album.artists ,
   };
   return {
     nowPlaying: filteredCurrentlyPlay,

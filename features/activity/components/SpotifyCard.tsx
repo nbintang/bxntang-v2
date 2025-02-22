@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import SkeletonCard from "./SkeletonCard";
-
+import AnimatedBeatIcon from "@/components/icons/BeatIcon";
 export default function SpotifyCard({ className }: { className?: string }) {
   const {
     data,
@@ -32,7 +32,7 @@ export default function SpotifyCard({ className }: { className?: string }) {
     );
   }
 
-  if (isLoading || !data ) {
+  if (isLoading || !data) {
     return <SkeletonCard className={className} />;
   }
 
@@ -45,6 +45,7 @@ export default function SpotifyCard({ className }: { className?: string }) {
       titleColor={cn(nowPlaying ? "text-white" : "text-black")}
       className={cn("relative overflow-hidden mix-blend-difference", className)}
     >
+      {/* Overlay */}
       {nowPlaying && (
         <>
           <Image
@@ -56,8 +57,6 @@ export default function SpotifyCard({ className }: { className?: string }) {
           <div className="absolute inset-0 z-10 bg-black/50 backdrop-blur-sm" />
         </>
       )}
-
-      {/* Overlay */}
 
       {/* Content */}
       <div className="relative z-20">
@@ -76,6 +75,10 @@ export default function SpotifyCard({ className }: { className?: string }) {
                   height={80}
                   className="w-full h-full object-cover  aspect-square"
                 />
+                {/* beat music bar */}
+                <div className="absolute bottom-[0.2px] right-[0.8px] ">
+                  <AnimatedBeatIcon />
+                </div>
                 {/* blur hover */}
                 <div className="absolute inset-0 z-10 bg-black/50 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
               </Link>
