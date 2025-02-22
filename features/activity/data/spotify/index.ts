@@ -4,7 +4,7 @@ const getFilteredSpotifyData = async (): Promise<SpotifyDataProps> => {
   const currentlyPlay = await getSpotifyEndpoint("/player/currently-playing");
   const playlist = await getSpotifyEndpoint("/playlists?limit=20&offset=1");
   const followedArtists = await getSpotifyEndpoint("/following?type=artist");
-  console.log({currentlyPlay, playlist, followedArtists});
+
   if (!currentlyPlay.is_playing || !currentlyPlay.item) {
     return {
       nowPlaying: null,
