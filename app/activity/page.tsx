@@ -1,8 +1,9 @@
-import GithubContributionChartsCard from "@/features/activity/components/GithubCard";
-import PlaystationCard from "@/features/activity/components/PlaystationCard";
-import SpotifyCard from "@/features/activity/components/SpotifyCard";
-import { cn } from "@/lib/utils";
-import React from "react";
+import {
+  GithubContributionChartsCard,
+  PlaystationCard,
+  SpotifyCard,
+} from "@/features/activity/components";
+import { cn } from "@/lib/utils"
 
 export default function Activity() {
   return (

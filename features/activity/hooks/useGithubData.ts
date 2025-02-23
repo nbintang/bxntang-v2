@@ -1,8 +1,8 @@
-import { getGithubData } from "@/features/activity/data/github";
+import getGithubData from "@/features/activity/data/github";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useGithubDataCharts() {
-  const { data, isError } = useQuery<GithubContributionData>({
+  const { data, isError, isLoading } = useQuery<GithubContributionData>({
     queryKey: ["github"],
     queryFn: getGithubData,
   });
@@ -30,6 +30,7 @@ export default function useGithubDataCharts() {
     0
   );
   return {
+    isLoading,
     chartData,
     totalContributions,
     groupedData,

@@ -77,7 +77,7 @@ const mobileView = useMediaQuery("(max-width: 768px)");
                   className="w-full h-full object-cover  aspect-square"
                 />
                 {/* beat music bar */}
-                <div className="absolute bottom-[0.2px] right-[0.8px] ">
+                <div className="absolute z-20 bottom-[0.2px] right-[0.8px] ">
                   <AnimatedBeatIcon />
                 </div>
                 {/* blur hover */}
