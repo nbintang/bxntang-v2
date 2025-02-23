@@ -2,7 +2,7 @@ import Link from "next/link";
 import Container from "../../Container";
 import navData from "../navData";
 
-import { forwardRef } from "react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
@@ -63,7 +63,7 @@ const groupedNavData = navData.navbar.reduce((acc, item, index) => {
   return acc;
 }, [] as { href: string; label: string }[][]);
 
-const Navigation = forwardRef<
+const Navigation = React.forwardRef<
   HTMLElement,
   React.ComponentPropsWithoutRef<"nav">
 >(({ className, ...props }, ref) => {

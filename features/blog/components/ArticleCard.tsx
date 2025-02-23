@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { CalendarDays } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import React from "react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 interface ArticleCardProps extends React.HTMLAttributes<HTMLDivElement> {

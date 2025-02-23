@@ -9,6 +9,15 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 
+interface ActivityCardProps {
+  children: React.ReactNode;
+  icon: (props: React.SVGProps<SVGSVGElement>) => React.ReactElement;
+  title?: string;
+  desc?: string;
+  className?: string;
+  titleColor?: string;
+}
+
 export default function ActivityCard({
   children,
   icon: Icon,
@@ -16,14 +25,7 @@ export default function ActivityCard({
   desc,
   className,
   titleColor = "text-primary",
-}: {
-  children: React.ReactNode;
-  icon: (props: React.SVGProps<SVGSVGElement>) => React.ReactElement;
-  title?: string;
-  desc?: string;
-  className?: string;
-  titleColor?: string;
-}) {
+}: ActivityCardProps) {
   return (
     <Card className={cn("shadow", className)}>
       <CardHeader className="flex z-20 relative flex-col gap-2">

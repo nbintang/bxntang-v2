@@ -1,7 +1,7 @@
 
 import { CalendarIcon, InstagramIcon, MailIcon } from "lucide-react";
 
-const SocialMediaIcon = {
+const SocialMediaIcon: IconsProps = {
   calendar: (props: IconProps) => <CalendarIcon {...props} />,
   email: (props: IconProps) => <MailIcon {...props} />,
   linkedin: (props: IconProps) => (

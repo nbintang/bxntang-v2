@@ -1,7 +1,7 @@
-import RandomQuotes from "@/features/home/components/RandomQuotes";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { WordRotate } from "@/components/ui/word-rotate";
 import Container from "@/components/layouts/Container";
+import RandomQuotes from "@/features/home/components/RandomQuotes";
 
 export default function Home() {
   return (
@@ -26,7 +26,7 @@ export default function Home() {
               Nur Bintang Hidayat
             </h2>
             <p className="mt-6 text-sm sm:text-xl text-neutral-600  indent-2">
-            I&apos;m a fullstack web developer passionate about crafting
+              I&apos;m a fullstack web developer passionate about crafting
               seamless and intuitive digital experiences. With a strong focus on
               user-centric design, I build solutions that not only function
               efficiently but also enhance engagement. Whether working on
@@ -43,13 +43,7 @@ export default function Home() {
           blur="0px"
           className="flex justify-center items-center text-muted-foreground gap-2"
         >
-           <blockquote className="relative font-display text-center text-lg font-medium tracking-tight text-neutral-950 sm:text-4xl">
-              <p className="before:content-['“'] after:content-['”'] sm:before:absolute sm:before:right-full">
-              
-            <RandomQuotes />
-            
-              </p>
-            </blockquote>
+          <RandomQuotes />
         </BlurFade>
       </div>
     </Container>

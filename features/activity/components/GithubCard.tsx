@@ -28,7 +28,7 @@ export default function GithubContributionChartsCard({
   return (
     <ActivityCard
       className={cn("",className)}
-      icon={ActivityIcons.github }
+      icon={ActivityIcons.github}
       title={"Github"}
       desc="Daily Github Commit and Contribution"
     >

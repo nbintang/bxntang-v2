@@ -10,9 +10,6 @@ export default function ActivityLayout({
   return <Container className="mt-14 sm:mt-16 mb-3">{children}</Container>;
 }
 
-
-
-
 export const metadata = generateMetadata({
   title: "Activity | Bxntang",
   description: "My Daily Activity",
