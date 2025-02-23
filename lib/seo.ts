@@ -3,7 +3,7 @@ import { type OpenGraph } from "next/dist/lib/metadata/types/opengraph-types";
 
 export const mainURL =
   process.env.NODE_ENV === "production"
-    ? "https://bxntang-2.vercel.app"
+    ? process.env.PROD_URL
     : "http://localhost:3000";
 
 interface PartialMetadata extends Partial<Metadata> {
