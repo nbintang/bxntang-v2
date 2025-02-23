@@ -17,7 +17,7 @@ export function timeAgo(
   if(differenceInMinutes < 1) return "Just now";
   if(differenceInMinutes < 60) return `${differenceInMinutes} minute${differenceInMinutes > 1 ? "s" : ""} ago`;
   if(differenceInHours < 24) return `${differenceInHours} hour${differenceInHours > 1 ? "s" : ""} ago`;
-  if( differenceInDays< 2) return  "Long time ago";
+  if(differenceInDays< 2) return "Long time ago";
   
   return `${differenceInDays} day${differenceInDays > 1 ? "s" : ""} ago (${differenceInHours} hours ago)`;
 }

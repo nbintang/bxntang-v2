@@ -8,8 +8,8 @@ const getFilteredSpotifyData = async (): Promise<SpotifyDataProps> => {
   if (!currentlyPlay.is_playing || !currentlyPlay.item) {
     return {
       nowPlaying: null,
-      playlist: followedArtists.artists.items.length,
-      followedArtists: playlist?.total,
+      playlist:playlist?.total, 
+      followedArtists: followedArtists.artists.items.length
     };
   }
   const filteredCurrentlyPlay = {
@@ -24,8 +24,8 @@ const getFilteredSpotifyData = async (): Promise<SpotifyDataProps> => {
   };
   return {
     nowPlaying: filteredCurrentlyPlay,
-    playlist: followedArtists.artists.items.length,
-    followedArtists: playlist?.total,
+    playlist: playlist?.total,
+    followedArtists:  followedArtists.artists.items.length,
   };
 };
 
