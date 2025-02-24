@@ -22,7 +22,12 @@ const SocialMediaLayout: React.FC<SocialMediaProps> = ({
     <ul role="list" className={cn("flex gap-x-10", className)}>
       {SocialMediaProfiles.map((item) => (
         <li key={item.title}>
-          <Link href={item.href} aria-label={item.title}>
+          <Link
+            href={item.href}
+            aria-label={item.title}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <item.Icon
               className={cn(
                 "h-6 w-6",
