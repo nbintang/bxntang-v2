@@ -1,4 +1,4 @@
-type dummySlugProps = {
+export type dummyBlogProps = {
   slug: string
   title: string;
   description: string;
@@ -8,7 +8,7 @@ type dummySlugProps = {
   author: string;
 };
 
-export const dummySLug: dummySlugProps[] = [
+export const dummyBlog: dummyBlogProps[] = [
   {
     slug: "hono",
     title: "Hono: A Lightweight Web Framework with Big Potential",

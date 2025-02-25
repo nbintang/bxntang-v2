@@ -11,7 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import ArticleCard from "@/features/blog/components/ArticleCard";
 import { Button } from "@/components/ui/button";
-import { dummySLug } from "../dummy";
+import { dummyBlog } from "../dummy";
 import { toast } from "sonner";
 import { ChevronsRight } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -37,7 +37,7 @@ export default function CarouselDApiDemo({
     <div className={cn("w-full h-full", className)}>
       <Carousel setApi={setApi} opts={{ loop: true }}>
         <CarouselContent className="h-full  ">
-          {dummySLug.map(
+          {dummyBlog.map(
             ({ author, date, description, image, title, slug }, index) => (
               <CarouselItem key={index} className="h-full ">
                 <ArticleCard

@@ -1,4 +1,4 @@
-import { dummySLug } from "@/features/blog/dummy";
+import { dummyBlog } from "@/features/blog/dummy";
 import { generateMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 import { Metadata } from "next";
@@ -14,13 +14,10 @@ export default function BlogSlugLayout({
     </main>
   );
 }
-type Params = {
-  params: Promise<{ slug: string }>;
-};
-type FetchProps = ({ params }: Params) => Promise<Metadata>;
-export const metadata: FetchProps = async ({ params }) => {
-  const { slug } = await params;
-  const data = dummySLug.find((blog) => blog.slug === slug);
+export const metadata= async ({ params }: { params: { slug: string } }): Promise<Metadata> => {
+  const { slug } = params;
+  const data = dummyBlog.find((blog) => blog.slug === slug);
+
   return generateMetadata({
     title: data?.title,
     description: data?.description,
