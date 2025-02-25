@@ -21,8 +21,8 @@ export default function SkeletonCard({ className }: { className?: string }) {
           <div className="flex items-start space-x-4">
             <Skeleton className="h-[120px] w-[120px] " />
             <div className="space-y-2">
-              <Skeleton className="h-5 w-32 " />
-              <Skeleton className="h-7 w-56 " />
+              <Skeleton className="h-5 sm:w-32 w-24 " />
+              <Skeleton className="h-7 sm:w-32 md:w-40 w-32 " />
             </div>
           </div>
         </div>
