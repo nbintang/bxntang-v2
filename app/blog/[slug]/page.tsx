@@ -8,7 +8,7 @@ export default async function Blog({
 }: {
   params: Promise<{ slug: string }>;
 }) {
- const slug = (await params).slug;
+ const slug = (await params).slug
   const blog = dummyBlog.find((blog) => blog.slug === slug);
   if (!blog) notFound();
   return (
