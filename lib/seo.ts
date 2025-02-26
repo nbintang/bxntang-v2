@@ -24,7 +24,7 @@ export function generateMetadata(data: PartialMetadata): Metadata {
       description,
       ...defaultMetaData.openGraph,
       ...data.openGraph,
-      url: `${mainURL}${data.urlEndpoint ?? ""}`, // Pastikan tidak null
+      url: `${mainURL}${data.urlEndpoint}`,
       images: [
         {
           url: `${mainURL}/api/og?title=${encodeURIComponent(

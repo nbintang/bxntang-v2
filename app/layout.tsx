@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="">
+    <html lang="en" suppressHydrationWarning>
       <body className={`font-mono  antialiased text-base  thin-scrollbar`}>
         <ReactQueryProvider>
           <main className="h-full bg-neutral-950 text-neutral-100">

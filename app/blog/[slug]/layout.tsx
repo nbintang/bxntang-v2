@@ -20,9 +20,16 @@ export async function generateMetadata({
 }) {
   const slug = (await params).slug;
   const data = dummyBlog.find((blog) => blog.slug === slug);
+  if (!data) {
+    return generateBlogMetadata({
+      title: "Blog | Bxntang",
+      description: "Checkout my portfolio blog",
+      urlEndpoint: `/blog`,
+    });
+  }
   return generateBlogMetadata({
-    title: data?.title,
-    description: data?.description,
+    title: data.title,
+    description: data.description,
     urlEndpoint: `/blog/${slug}`,
   });
 }

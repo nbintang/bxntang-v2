@@ -9,6 +9,6 @@ interface QuoteState {
 }
 
 export const useQuoteStore = create<QuoteState>((set) => ({
-  randomQuote: quotes[Math.floor(Math.random() * quotes.length)],
+   randomQuote: "", 
   generateQuote: () => set({ randomQuote: quotes[Math.floor(Math.random() * quotes.length)] }),
 }));

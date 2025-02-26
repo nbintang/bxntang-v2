@@ -37,7 +37,14 @@ export default function Home() {
             </p>
           </BlurFade>
         </div>
-        <RandomQuotes />
+        <BlurFade
+          delay={0.2 * 2}
+          inView
+          blur="0px"
+          className="flex justify-center items-center text-muted-foreground gap-2"
+        >
+          <RandomQuotes />
+        </BlurFade>
       </div>
     </Container>
   );
