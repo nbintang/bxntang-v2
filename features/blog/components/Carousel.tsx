@@ -15,6 +15,7 @@ import { dummyBlog } from "../dummy";
 import { toast } from "sonner";
 import { ChevronsRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Autoplay from "embla-carousel-autoplay";
 
 export default function CarouselDApiDemo({
   className,
@@ -35,7 +36,16 @@ export default function CarouselDApiDemo({
   const handleAppearToast = (slug: string) => router.push(`/blog/${slug}`);
   return (
     <div className={cn("w-full h-full", className)}>
-      <Carousel setApi={setApi} opts={{ loop: true }}>
+      <Carousel
+        setApi={setApi}
+        opts={{ loop: true }}
+        plugins={[
+          Autoplay({
+            delay: 2000, 
+            stopOnMouseEnter: true,
+          }),
+        ]}
+      >
         <CarouselContent className="h-full  ">
           {dummyBlog.map(
             ({ author, date, description, image, title, slug }, index) => (
