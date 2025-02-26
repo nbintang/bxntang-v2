@@ -29,7 +29,7 @@ export async function generateMetadata({
   }
   return generateBlogMetadata({
     title: data.title,
-    description: data.description,
+    description: `${data.description.slice(0, 100)}...`,
     urlEndpoint: `/blog/${slug}`,
   });
 }
