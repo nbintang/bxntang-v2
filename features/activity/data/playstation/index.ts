@@ -1,4 +1,4 @@
-import { timeAgo } from "@/helper/formatters";
+import { timeAgoFormat } from "@/helper/formatters";
 import { getEndpointPsData } from "./endpoint";
 
 export default async function getFilteredPsData(): Promise<FilteredPSDataProps> {
@@ -24,7 +24,7 @@ export default async function getFilteredPsData(): Promise<FilteredPSDataProps> 
     });
 
     const isOnline = profile.profile.primaryOnlineStatus === "online"; 
-    const lastPlayedTime = timeAgo(recent[0]?.lastPlayedDateTime || "");
+    const lastPlayedTime = timeAgoFormat(recent[0]?.lastPlayedDateTime || "");
     const gameName = recent[0]?.name;
     const gameImg = recent[0]?.image?.url;
     return {

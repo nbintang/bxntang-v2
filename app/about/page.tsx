@@ -42,13 +42,13 @@ export default function About() {
         )}
       >
         <Container>
-          <div className="flex items-center gap-x-8">
-            <h2 className="text-center font-display text-sm font-semibold tracking-wider text-white sm:text-left">
+          <div className="flex items-center justify-center ">
+            <h2 className="text-center font-display text-sm  font-semibold tracking-wider text-white sm:text-left">
               I have experienced working with many technologies
             </h2>
             <Separator
               orientation="horizontal"
-              className="flex-1  bg-neutral-800 hidden sm:flex"
+              className="flex-1 ml-1  bg-neutral-800 hidden sm:flex"
             />
           </div>
           <div>

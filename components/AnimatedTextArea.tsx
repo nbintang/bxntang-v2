@@ -1,6 +1,6 @@
 "use client";
 
-import * as  React from "react";
+import * as React from "react";
 import { useId } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
@@ -8,16 +8,28 @@ import { cn } from "@/lib/utils";
 interface AnimatedTextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
+  error?: string;
+  isError?: boolean;
+  
 }
 
 const AnimatedTextarea = React.forwardRef<
   HTMLTextAreaElement,
   AnimatedTextareaProps
->(({ label, className, ...props }, ref) => {
+>(({ label, error, isError, className, ...props }, ref) => {
   const id = useId();
 
   return (
     <div className="group relative z-0 transition-all focus-within:z-10">
+      <p
+        className={cn(
+          `text-red-500 text-xs transition-all duration-300 absolute right-6 top-2 origin-right italic`,
+          !isError && "opacity-0",
+          isError && "opacity-100"
+        )}
+      >
+        {error}
+      </p>
       <Textarea
         id={id}
         ref={ref}

@@ -25,12 +25,13 @@ const RootLayoutInner: React.FC<RootLayoutInnerProps> = ({ children }) => {
     navRef,
     mobileView,
     shouldReduceMotion,
-    handleToggle
+    handleToggle,
   } = useLayoutHeaderAnimation();
 
-
   return (
-    <MotionConfig transition={shouldReduceMotion ? { duration: 10 } : undefined}>
+    <MotionConfig
+      transition={shouldReduceMotion ? { duration: 10 } : undefined}
+    >
       <div className="flex flex-col min-h-screen">
         {/* Header */}
         <header>
@@ -68,7 +69,7 @@ const RootLayoutInner: React.FC<RootLayoutInnerProps> = ({ children }) => {
                   icon={XIcon}
                   toggleRef={closeRef}
                   expanded={expanded}
-                  onToggle={() =>{
+                  onToggle={() => {
                     setExpanded((expanded) => !expanded);
                     window.setTimeout(() =>
                       closeRef.current?.focus({ preventScroll: true })
@@ -117,13 +118,8 @@ const RootLayoutInner: React.FC<RootLayoutInnerProps> = ({ children }) => {
   );
 };
 
-interface RootLayoutProps {
-  children: React.ReactNode;
-}
-
-const NavbarLayout: React.FC<RootLayoutProps> = ({ children }) => {
+const NavbarLayout = ({ children }: RootLayoutInnerProps) => {
   const pathName = usePathname();
   return <RootLayoutInner key={pathName}>{children}</RootLayoutInner>;
 };
-
 export default NavbarLayout;

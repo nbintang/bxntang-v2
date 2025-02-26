@@ -25,7 +25,6 @@ const Header: React.FC<HeaderProps> = ({
   toggleRef,
 }) => {
   const setOpenEmail = useEmailDialog((state) => state.setOpen);
-
   return (
     <Container>
       <div className="flex items-center justify-between">

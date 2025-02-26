@@ -23,5 +23,5 @@ const LogoLayout = React.forwardRef<HTMLDivElement, LogoProps>(
     );
   }
 );
-LogoLayout.displayName = "LogoLayout"; // Add this line
+LogoLayout.displayName = "LogoLayout"; 
 export default LogoLayout;

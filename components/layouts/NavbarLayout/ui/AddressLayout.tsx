@@ -2,19 +2,24 @@ import { cn } from "@/lib/utils";
 import type React from "react";
 import navData from "../navData";
 
-interface OfficeProps {
+interface OfficeProps extends React.HTMLAttributes<HTMLElement> {
   name: string;
-  children: React.ReactNode;
   invert?: boolean;
 }
 
-const Office: React.FC<OfficeProps> = ({ name, children, invert = false }) => {
+const Office: React.FC<OfficeProps> = ({
+  name,
+  children,
+  invert = false,
+  ...props
+}) => {
   return (
     <address
       className={cn(
         "text-sm not-italic",
         invert ? "text-neutral-300" : "text-neutral-600"
       )}
+      {...props}
     >
       <strong className={invert ? "text-white" : "text-neutral-950"}>
         {name}

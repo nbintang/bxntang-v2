@@ -85,6 +85,8 @@ export function EmailDialog() {
                 <FormItem>
                   <FormControl>
                     <AnimatedInput
+                      error={form.formState.errors.from?.message}
+                      isError={form.formState.isDirty}
                       label="Who are you?"
                       className="group-last:rounded-b-none focus-visible:ring-0 focus-visible:ring-offset-0"
                       {...field}
@@ -101,6 +103,8 @@ export function EmailDialog() {
                 <FormItem>
                   <FormControl>
                     <AnimatedTextarea
+                      error={form.formState.errors.message?.message}
+                      isError={form.formState.isDirty}
                       label="Whachu needin'?"
                       rows={6}
                       className="group-first:rounded-t-none focus-visible:ring-0 focus-visible:ring-offset-0"
@@ -110,19 +114,7 @@ export function EmailDialog() {
                 </FormItem>
               )}
             />
-            <div className="flex justify-center gap-2">
-              {form.formState.errors.message && (
-                <>
-                  {"["}
-                  {Object.entries(form.formState.errors).map(([key, value]) => (
-                    <p key={key} className="text-xs mt-1 text-red-500">
-                      {value.message}
-                    </p>
-                  ))}
-                  {"]"}
-                </>
-              )}
-            </div>
+
             <Button
               type="submit"
               size={"sm"}

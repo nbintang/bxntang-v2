@@ -1,18 +1,20 @@
 import Link from "next/link";
 import Container from "../../Container";
 import navData from "../navData";
-
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
-interface NavigationRowProps {
-  children: React.ReactNode;
-}
+const groupedNavData = navData.navbar.reduce((acc, item, index) => {
+  if (index % 2 === 0) acc.push([]);
+  acc[acc.length - 1].push(item);
+  return acc;
+}, [] as { href: string; label: string }[][]);
 
-const NavigationRow: React.FC<NavigationRowProps> = ({ children }) => {
+type NavigationRowProps = React.HTMLAttributes<HTMLDivElement>;
+const NavigationRow: React.FC<NavigationRowProps> = ({ children, ...props }) => {
   return (
-    <div className="even:mt-px sm:bg-neutral-950">
+    <div className="even:mt-px sm:bg-neutral-950" {...props}>
       <Container>
         <div className="grid grid-cols-1 sm:grid-cols-2">{children}</div>
       </Container>
@@ -27,7 +29,6 @@ interface NavigationItemProps
 const NavigationItem: React.FC<NavigationItemProps> = ({
   href,
   children,
-
   ...props
 }) => {
   const pathname = usePathname();
@@ -57,11 +58,6 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
   );
 };
 
-const groupedNavData = navData.navbar.reduce((acc, item, index) => {
-  if (index % 2 === 0) acc.push([]);
-  acc[acc.length - 1].push(item);
-  return acc;
-}, [] as { href: string; label: string }[][]);
 
 const Navigation = React.forwardRef<
   HTMLElement,
@@ -86,7 +82,6 @@ const Navigation = React.forwardRef<
         </NavigationRow>
       ))}
     </nav>
-
   );
 });
 Navigation.displayName = "Navigation";

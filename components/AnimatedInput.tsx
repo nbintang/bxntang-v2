@@ -7,13 +7,24 @@ import { cn } from "@/lib/utils";
 
 interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
+  error?: string;
+  isError?: boolean; 
 }
 
 const AnimatedInput = React.forwardRef<HTMLInputElement, TextInputProps>(
-  ({ label, className, ...props }, ref) => {
+  ({ label, error, isError, className, ...props }, ref) => {
     const id = useId();
     return (
       <div className="group relative z-0 transition-all focus-within:z-10">
+        <p
+          className={cn(
+            `text-red-500 text-xs absolute right-6 top-2 origin-right italic`,
+            !isError && "opacity-0",
+            isError && "opacity-100"
+          )}
+        >
+          {error}
+        </p>
         <Input
           id={id}
           ref={ref}
@@ -46,4 +57,4 @@ const AnimatedInput = React.forwardRef<HTMLInputElement, TextInputProps>(
 
 AnimatedInput.displayName = "AnimatedInput";
 
-export default AnimatedInput
+export default AnimatedInput;
