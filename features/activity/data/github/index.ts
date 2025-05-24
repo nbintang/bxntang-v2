@@ -1,17 +1,21 @@
+
 import axios from "axios";
 const GITHUB_CONTRIBUTION_SCRAP_API =
-  "https://github-contributions-api.jogruber.de/v4/nbintang";
+  "https://github-contributions-api.jogruber.de/v4/";
 
- const getGithubData = async () => {
-  const response = await axios.get(GITHUB_CONTRIBUTION_SCRAP_API);
-  const data = response.data as GithubContributionData;
-  const validYears = Object.keys(data.total).filter(
-    (year) => data.total[year] > 20
+const getGithubData = async (username: string): Promise<GithubApiResponse> => {
+  const response = await axios.get(
+    `${GITHUB_CONTRIBUTION_SCRAP_API}${username}`
   );
-  const filterContributions = data.contributions.filter((c) => {
-    const year = c.date.split("-")[0];
-    return validYears.includes(year);
-  });
-  return { ...data, contributions: filterContributions };
+  const data = response.data as GithubApiResponse | GithubApiErrorResponse;
+  if (response.status !== 200)
+    throw new Error(
+      `Fetching GitHub contribution data for "${username}" failed: ${
+        (data as GithubApiErrorResponse).error
+      }`
+    );
+
+  return data as GithubApiResponse;
 };
+
 export default getGithubData;

@@ -58,7 +58,6 @@ export default function SpotifyCard({ className }: { className?: string }) {
             className
           )}
         >
-          {/* Overlay */}
           {nowPlaying && (
             <>
               <Image
@@ -71,7 +70,6 @@ export default function SpotifyCard({ className }: { className?: string }) {
             </>
           )}
 
-          {/* Content */}
           <div className="relative z-20">
             <div className="flex items-center gap-4">
               <div className="rounded-md isolate relative group w-20 h-20 overflow-hidden  bg-gray-200 flex-shrink-0 flex items-center justify-center">
@@ -91,11 +89,9 @@ export default function SpotifyCard({ className }: { className?: string }) {
                           height={80}
                           className="w-full h-full object-cover  aspect-square"
                         />
-                        {/* beat music bar */}
                         <div className="absolute z-20 bottom-[0.2px] right-[0.8px] ">
                           <AnimatedBeatIcon />
                         </div>
-                        {/* blur hover */}
                         <div className="absolute inset-0 z-10 bg-black/50 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
                       </Link>
                     </TooltipTrigger>

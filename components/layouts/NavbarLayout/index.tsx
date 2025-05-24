@@ -33,7 +33,6 @@ const RootLayoutInner: React.FC<RootLayoutInnerProps> = ({ children }) => {
       transition={shouldReduceMotion ? { duration: 10 } : undefined}
     >
       <div className="flex flex-col min-h-screen">
-        {/* Header */}
         <header>
           <div
             className="absolute left-0 right-0 top-2 z-40 pt-14"
@@ -103,7 +102,6 @@ const RootLayoutInner: React.FC<RootLayoutInnerProps> = ({ children }) => {
           </motion.div>
         </header>
 
-        {/*  Body   */}
         <motion.div
           layout
           style={{ borderRadius: 40 }}

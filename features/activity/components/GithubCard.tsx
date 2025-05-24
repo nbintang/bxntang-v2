@@ -1,103 +1,77 @@
 "use client";
 
-import {
-  Line,
-  LineChart,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
-
-import { GitCommitHorizontal } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ActivityIcons } from "@/components/icons/ActivityIcon";
 import ActivityCard from "@/components/layouts/ActivityCard";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import useGithubDataCharts from "@/features/activity/hooks/useGithubData";
+import GitHubCalendar, { gitHubTheme } from "./github/GithubCalendar";
+import { Skeleton as GitHubCalendarSkeleton } from "react-activity-calendar";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export default function GithubContributionChartsCard({
   className,
-}:  {
-    className?: string
-}){
-  const { chartData } = useGithubDataCharts();
+}: {
+  className?: string;
+}) {
+  const { data, isError, isLoading, error, isPending } =
+    useGithubDataCharts("nbintang");
+
+  if (isLoading)
+    return (
+      <Card className={cn(className)}>
+        <CardHeader>
+          <Skeleton className="h-8 w-24 " />
+          <Skeleton className="h-4 w-32 " />
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-start flex-col ">
+            <GitHubCalendarSkeleton
+              blockSize={13}
+              theme={gitHubTheme}
+              loading={isPending}
+            />
+          </div>
+        </CardContent>
+      </Card>
+    );
+  if (isError || !data) {
+    return (
+      <ActivityCard
+        icon={ActivityIcons.github}
+        title={"PlayStation"}
+        className={cn(`relative`, className)}
+      >
+        <div>
+          <h1 className="text-xl sm:text-3xl md:text-4xl font-bold text-destructive ">
+            500
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            {error?.message.includes(
+              `https://ca.account.sony.com/api/v1/ssocookie.`
+            ) && "Something went wrong :)"}
+          </p>
+        </div>
+      </ActivityCard>
+    );
+  }
 
   return (
     <ActivityCard
-      className={cn("",className)}
+      className={cn("", className)}
       icon={ActivityIcons.github}
       title={"Github"}
       desc="Daily Github Commit and Contribution"
     >
       <ScrollArea>
-        <ChartContainer
-          config={{
-            contributions: {
-              label: "Commit | Contribution: ",
-              color: "#60a5fa",
-            },
-          }}
-          className="h-[200px] w-full"
-        >
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-              className="text-[6px] sm:text-[10px]"
-                dataKey="date"
-                tickFormatter={(value) => {
-                    const [year, month] = value.split("-");
-                    return `${
-                      [
-                        "Jan",
-                        "Feb",
-                        "Mar",
-                        "Apr",
-                        "May",
-                        "Jun",
-                        "Jul",
-                        "Aug",
-                        "Sep",
-                        "Oct",
-                        "Nov",
-                        "Dec",
-                      ][parseInt(month) - 1]
-                    } ${year}`;
-                  }}
-                interval={2}
-                angle={-45}
-                textAnchor="end"
-                height={50}
-              />
-              <YAxis allowDecimals={false} />
-              <ChartTooltip content={<ChartTooltipContent />} />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="contributions"
-                stroke="#2563eb"
-                strokeWidth={2}
-                dot={({ cx, cy, payload }) => {
-                  const r = 24;
-                  return (
-                    <GitCommitHorizontal
-                      className="w-2 h-2"
-                    key={`${payload.date}-${payload.contributions}`}
-                      x={cx - r / 2}
-                      y={cy - r / 2}
-                      width={r}
-                      height={r}
-                      stroke="#2563eb"
-                    />
-                  );
-                }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </ChartContainer>
+        <GitHubCalendar
+          blockSize={13}
+          data={data}
+          isError={isError}
+          loading={isLoading}
+          year="last"
+        />
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
     </ActivityCard>

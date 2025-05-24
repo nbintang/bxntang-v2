@@ -1,4 +1,4 @@
-import CarouselDApiDemo from "@/features/blog/components/Carousel";
+import CarouselBlog from "@/features/blog/components/CarouselBlog";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { cn } from "@/lib/utils";
 
@@ -27,7 +27,7 @@ export default function Blog() {
           </p>
         </div>
       </BlurFade>
-      <CarouselDApiDemo className="my-5 sm:my-0 sm:mt-5" />
+      <CarouselBlog className="my-5 sm:my-0 sm:mt-5" />
     </div>
   );
 }

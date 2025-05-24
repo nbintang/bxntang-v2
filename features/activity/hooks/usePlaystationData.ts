@@ -3,7 +3,7 @@ import getFilteredPsData from "@/features/activity/data/playstation";
 
 const usePlaystationData = (): UseQueryResult<FilteredPSDataProps, Error> => {
   return useQuery({
-    queryKey: ["psnToken"],
+    queryKey: ["Playstation"],
     queryFn: getFilteredPsData,
     staleTime: 1000 * 60 * 2, // 2 minutes cache
     refetchInterval: (query) => (query.state.error ? false : 10000),

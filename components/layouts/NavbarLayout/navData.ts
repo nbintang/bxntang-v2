@@ -5,7 +5,7 @@ const navData = {
     { href: "/blog", label: "My Blog" },
     { href: "/about", label: "About Me" },
     { href: "/activity", label: "My Activity" },
-    { href: "/CV_Nur Bintang Hidayat.pdf", label: "Resume"},
+    { href: "/project", label: "My Project"},
   ],
   address: [
     {
