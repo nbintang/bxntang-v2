@@ -2,13 +2,14 @@
 
 import Image from "next/image";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Project } from "../dummy";
 import Link from "next/link";
 import { GithubIcon } from "lucide-react";
 import IconsRenderer from "@/components/icons/IconsRenderer";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 interface ProjectCardProps {
   project: Project;
@@ -16,6 +17,19 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+
+  React.useEffect(() => {
+    toast.warning("This data is still dummy!", {
+      richColors: true,
+      className: "text-xs",
+      id: "toast",
+      position: "bottom-right",
+    });
+
+    return () => {
+      toast.dismiss("toast");
+    };
+  }, []);
   const visibleTech = project.technologies.slice(0, 4);
   const hiddenTech = project.technologies.length - visibleTech.length;
   return (
@@ -69,7 +83,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
       <div className="relative w-full h-full flex flex-col justify-between min-h-[360px]">
         <div className="flex justify-start">
-          <h3 className="text-3xl md:text-4xl pt-2 font-bold text-secondary/70 group-hover:text-secondary transition-colors duration-300">
+          <h3 className="text-2xl md:text-4xl pt-2 font-bold text-secondary/70 group-hover:text-secondary transition-colors duration-300">
             {project.title}
           </h3>
         </div>

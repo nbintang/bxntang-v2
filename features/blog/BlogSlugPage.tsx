@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchBlogBySlug } from "./data/blogs";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Blog } from "@prisma/client";
+import useFetchServerData from "@/hooks/useFetchServerData";
 
 export default function BlogSlugPage({ slug }: { slug: string }) {
   const pathname = usePathname();
@@ -18,10 +19,7 @@ export default function BlogSlugPage({ slug }: { slug: string }) {
     isFetched,
     isSuccess,
     isFetching,
-  } = useQuery<Blog>({
-    queryKey: ["blog"],
-    queryFn: async () => await fetchBlogBySlug(slug),
-  });
+  } = useFetchServerData<Blog>({ endpoint: `/blogs/${slug}` });
   React.useEffect(() => {
     toast.warning("This data is still dummy!", {
       richColors: true,
@@ -36,11 +34,21 @@ export default function BlogSlugPage({ slug }: { slug: string }) {
   if (isLoading || isFetching) {
     return (
       <>
+        <Skeleton className="w-96 h-10" />
         <Skeleton className="w-full h-96" />
-        <Skeleton className="w-full h-20" />
-        <Skeleton className="w-full h-20" />
-        <Skeleton className="w-full h-20" />
-        <Skeleton className="w-full h-20" />
+        <div className="flex items-center gap-2">
+          <Skeleton className="w-20 rounded-full h-20" />
+          <span className="flex flex-col gap-2">
+            <Skeleton className="w-32 h-5" />
+            <Skeleton className="w-20 h-5" />
+          </span>
+        </div>
+        <Skeleton className="w-full h-16" />
+        <Skeleton className="w-full h-8" />
+        <Skeleton className="w-full h-16" />
+        <Skeleton className="w-full h-5" />
+        <Skeleton className="w-full h-5" />
+        <Skeleton className="w-full h-5" />
       </>
     );
   }

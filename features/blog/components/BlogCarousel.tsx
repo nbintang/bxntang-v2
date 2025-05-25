@@ -19,15 +19,13 @@ import { useQuery } from "@tanstack/react-query";
 import { Blog } from "@prisma/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { fetchBlogs } from "../data/blogs";
+import useFetchServerData from "@/hooks/useFetchServerData";
 
 export default function CarouselBlog({ className }: { className?: string }) {
   const router = useRouter();
   const { api, setApi, count, current } = useCarouselBlog();
   const { data, isLoading, isError, isSuccess, isFetched, isFetching } =
-    useQuery<Blog[]>({
-      queryKey: ["blog"],
-      queryFn: fetchBlogs,
-    });
+    useFetchServerData<Blog[]>("/blogs");
   if (isLoading || isFetching)
     return <Skeleton className={cn("rounded-xl min-h-96", className)} />;
   if (isError) return <div className="text-red-500">Something went wrong</div>;
