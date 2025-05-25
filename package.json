@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "prisma generate  --schema=server/prisma/schema.prisma && next build",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
@@ -13,7 +13,8 @@
     "studio": "prisma studio --schema=server/prisma/schema.prisma",
     "db:migrate": "prisma migrate dev --schema=server/prisma/schema.prisma",
     "db:reset": "npx prisma migrate reset --schema=server/prisma/schema.prisma",
-    "db:seed": "ts-node  server/prisma/seed.ts"
+    "db:seed": "ts-node  server/prisma/seed.ts",
+    "postinstall": "prisma generate --schema=server/prisma/schema.prisma"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.0",
