@@ -1,5 +1,6 @@
 
-import { mainURL } from "@/lib/seo";
+
+import { mainURL } from "@/lib/metadata";
 import type { MetadataRoute } from "next";
 
 const endPointUrls = ["/", "/blog", "/activity", "/about"];

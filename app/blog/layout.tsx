@@ -1,5 +1,5 @@
 import Container from "@/components/layouts/Container";
-import { generateMetadata } from "@/lib/seo";
+import { generateMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {

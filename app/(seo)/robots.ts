@@ -1,5 +1,5 @@
 
-import { mainURL } from "@/lib/seo";
+import { mainURL } from "@/lib/metadata";
 import { MetadataRoute } from "next";
 
 export default function robots() : MetadataRoute.Robots {

@@ -6,18 +6,13 @@ import fs from "fs";
 import { cn } from "@/lib/utils";
 
 export const revalidate: Revalidate = 0;
-
+const fontPath = path.join(process.cwd(), "public/fonts/MonaSans-SemiBold.ttf");
+const fontData = fs.readFileSync(fontPath);
 export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
   const title = searchParams.get("title") || "Bxntang";
   const description =
     searchParams.get("description") || "Software Engineer from Indonesia";
-
-  const fontPath = path.join(
-    process.cwd(),
-    "public/fonts/MonaSans-SemiBold.ttf"
-  );
-  const fontData = fs.readFileSync(fontPath);
 
   return new ImageResponse(
     (
@@ -32,6 +27,7 @@ export async function GET(req: NextRequest) {
               "font-bold text-center  text-black font-display leading-none",
               title.trim().length > 12 ? "text-5xl" : "text-8xl"
             )}
+            style={{ fontFamily: "Mona Sans" }}
           >
             {title}.
           </h1>

@@ -1,6 +1,5 @@
-import { dummyBlog } from "@/features/blog/dummy";
-import { generateMetadata as generateBlogMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
+import { fetchMetadata } from "./metadata";
 
 export default function BlogSlugLayout({
   children,
@@ -13,23 +12,11 @@ export default function BlogSlugLayout({
     </main>
   );
 }
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const slug = (await params).slug;
-  const data = dummyBlog.find((blog) => blog.slug === slug);
-  if (!data) {
-    return generateBlogMetadata({
-      title: "Blog | Bxntang",
-      description: "Checkout my portfolio blog",
-      urlEndpoint: `/blog`,
-    });
-  }
-  return generateBlogMetadata({
-    title: data.title,
-    description: `${data.description.slice(0, 70)}...`,
-    urlEndpoint: `/blog/${slug}`,
-  });
+  return fetchMetadata({ params });
 }

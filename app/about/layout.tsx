@@ -1,4 +1,4 @@
-import { generateMetadata } from "@/lib/seo";
+import { generateMetadata } from "@/lib/metadata";
 import React from "react";
 
 export default function AboutLayout({
