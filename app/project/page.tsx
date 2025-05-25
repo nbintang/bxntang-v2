@@ -1,6 +1,6 @@
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import ProjectCard from "@/features/project/components/ProjectCard";
-import { projectData, type Project } from "@/features/project/dummy";
+import { projectData } from "@/features/project/dummy";
 
 
 export default function ProjectCards() {

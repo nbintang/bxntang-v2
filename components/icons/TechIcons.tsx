@@ -18,7 +18,7 @@ export type TechIconName =
   | "Git"
   | "Motion";
 
-export interface IconProps extends React.SVGProps<SVGSVGElement> {}
+export type IconProps = React.SVGProps<SVGSVGElement>;
 export const TechIcons: Record<TechIconName, React.FC<IconProps>> = {
   Javascript: (props: IconProps) => (
     <svg
