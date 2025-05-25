@@ -35,7 +35,7 @@ export const projectData: Project[] = [
       "ReactQuery",
     ],
     year: "2023",
-    status: "Maintained",
+    status: "Completed",
   },
   {
     title: "Go Ikan Cupang",

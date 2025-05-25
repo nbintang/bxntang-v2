@@ -42,7 +42,8 @@ const Header: React.FC<HeaderProps> = ({
             variant={invert ? "secondary" : "black"}
             type="button"
             size={"sm"}
-            className={cn("rounded-full font-semibold  ")}
+            rounded
+            className={cn("font-semibold  ")}
             onClick={() => setOpenEmail(true)}
           >
             Contact Me
@@ -56,9 +57,10 @@ const Header: React.FC<HeaderProps> = ({
             aria-controls={panelId}
             size={"icon"}
             className={cn(
-              "group rounded-full  transition ",
+              "group l  transition ",
               !invert && "border"
             )}
+            rounded
             aria-label="Toggle navigation"
           >
             <Icon

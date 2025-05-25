@@ -8,6 +8,7 @@ import { Project } from "../dummy";
 import Link from "next/link";
 import { GithubIcon } from "lucide-react";
 import IconsRenderer from "@/components/icons/IconsRenderer";
+import { Button } from "@/components/ui/button";
 
 interface ProjectCardProps {
   project: Project;
@@ -27,7 +28,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <Image
-        src={project.image.endsWith(".png") || project.image.endsWith(".jpg") ? project.image : "/img/project/default.png"}
+        src={
+          project.image.endsWith(".png") || project.image.endsWith(".jpg")
+            ? project.image
+            : "/img/project/default.png"
+        }
         alt={project.title}
         fill
         className={cn(
@@ -37,6 +42,24 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         sizes="100vw"
         priority
       />
+      <div className="absolute right-0 top-0 z-20">
+        <Button
+          className={cn(
+            "bg-secondary/10 hover:bg-white/20   px-6  transition-all duration-300 delay-300 text-white",
+            "group-hover:-translate-y-0 group-hover:opacity-100 opacity-0 -translate-y-2 ",
+            "rounded-bl-[50%]   rounded-t-none rounded-r-none",
+            project.status === "Completed" && "bg-green-500 hover:bg-green-600",
+            project.status === "In Progress" &&
+              "bg-yellow-400 hover:bg-yellow-500",
+            project.status === "Planned" && "bg-blue-500 hover:bg-blue-600",
+            project.status === "Maintained" &&
+              "bg-indigo-500 hover:bg-indigo-600",
+            project.status === "Archived" && "bg-red-500 hover:bg-red-600"
+          )}
+        >
+          {project.status}
+        </Button>
+      </div>
 
       <div
         className={cn(
@@ -64,23 +87,25 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </p>
           </div>
           <div className="flex lg:flex-col  flex-row-reverse justify-between w-full md:w-fit items-end  gap-3">
-            <div
+            <Button
+              size={"icon"}
+              rounded
               className={cn(
-                "flex flex-wrap gap-2 transition-all duration-300 delay-100",
+                "flex flex-wrap gap-2 transition-all delay-100  bg-secondary/10 backdrop-blur-md text-secondary text-xs font-medium   hover:bg-white/20 duration-200",
                 isHovered
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
               )}
+              asChild
             >
               <Link
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2   group transition-all duration-500 rounded-full bg-secondary/10 hover:bg-secondary/20"
               >
                 <GithubIcon className="w-4 h-4 text-secondary group-hover/link:scale-110 transition-transform  " />
               </Link>
-            </div>
+            </Button>
             <div
               className={cn(
                 "flex flex-wrap gap-2 transition-all duration-300 delay-100",
@@ -99,9 +124,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
               {hiddenTech > 0 && (
                 <div className="px-3 py-1 h-9 w-9 md:w-12 md:h-12 grid place-items-center  bg-secondary/10 backdrop-blur-md text-secondary text-xs font-medium rounded-full  hover:bg-white/20 transition-all duration-200">
-                  <span className="md:text-base text-[8px]">
-                    +{hiddenTech}
-                  </span>
+                  <span className="md:text-base text-[8px]">+{hiddenTech}</span>
                 </div>
               )}
             </div>
