@@ -1,4 +1,4 @@
-import CarouselBlog from "@/features/blog/components/CarouselBlog";
+import CarouselBlog from "@/features/blog/components/BlogCarousel";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { cn } from "@/lib/utils";
 

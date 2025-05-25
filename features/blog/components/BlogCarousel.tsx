@@ -8,18 +8,29 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
-import ArticleCard from "@/features/blog/components/ArticleCard";
+import BlogCard from "@/features/blog/components/BlogCard";
 import { Button } from "@/components/ui/button";
-import { dummyBlog } from "../dummy";
 import { toast } from "sonner";
 import { ChevronsRight } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 import useCarouselBlog from "../hooks/useCarouselBlog";
 import { useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import { Blog } from "@prisma/client";
+import { Skeleton } from "@/components/ui/skeleton";
+import { fetchBlogs } from "../data/blogs";
 
 export default function CarouselBlog({ className }: { className?: string }) {
   const router = useRouter();
   const { api, setApi, count, current } = useCarouselBlog();
+  const { data, isLoading, isError, isSuccess, isFetched, isFetching } =
+    useQuery<Blog[]>({
+      queryKey: ["blog"],
+      queryFn: fetchBlogs,
+    });
+  if (isLoading || isFetching)
+    return <Skeleton className={cn("rounded-xl min-h-96", className)} />;
+  if (isError) return <div className="text-red-500">Something went wrong</div>;
   const handleToastInfo = () =>
     toast.info("We're currently working on this feature, stay tuned!", {
       richColors: true,
@@ -39,21 +50,27 @@ export default function CarouselBlog({ className }: { className?: string }) {
         ]}
       >
         <CarouselContent className="h-full  ">
-          {dummyBlog.map(
-            ({ author, date, description, image, title, slug }, index) => (
-              <CarouselItem key={index} className="h-full ">
-                <ArticleCard
-                  onClick={() => handleAppearToast(slug)}
-                  className="h-full min-h-[50vh] flex cursor-pointer"
-                  title={title}
-                  excerpt={description}
-                  date={date}
-                  author={author}
-                  imageUrl={image}
-                />
-              </CarouselItem>
-            )
-          )}
+          {isSuccess &&
+            isFetched &&
+            Array.isArray(data) &&
+            data?.map(
+              (
+                { author, updatedAt, description, image, title, slug },
+                index
+              ) => (
+                <CarouselItem key={index} className="h-full ">
+                  <BlogCard
+                    onClick={() => handleAppearToast(slug)}
+                    className="h-full min-h-[50vh] flex cursor-pointer"
+                    title={title}
+                    description={description}
+                    updatedAt={updatedAt}
+                    author={author}
+                    image={image}
+                  />
+                </CarouselItem>
+              )
+            )}
         </CarouselContent>
       </Carousel>
       <div className="flex justify-between">
@@ -70,15 +87,17 @@ export default function CarouselBlog({ className }: { className?: string }) {
             />
           ))}
         </div>
-        <Button
-          variant={"link"}
-          size="sm"
-          className="text-primary hover:text-primary flex  gap-2 items-center"
-          onClick={handleToastInfo}
-        >
-          <span>See More</span>
-          <ChevronsRight className="w-4 h-4" />
-        </Button>
+        {isSuccess && (
+          <Button
+            variant={"link"}
+            size="sm"
+            className="text-primary hover:text-primary flex  gap-2 items-center"
+            onClick={handleToastInfo}
+          >
+            <span>See More</span>
+            <ChevronsRight className="w-4 h-4" />
+          </Button>
+        )}
       </div>
     </div>
   );

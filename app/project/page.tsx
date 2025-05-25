@@ -9,7 +9,7 @@ export default function ProjectCards() {
       {projectData.map((project, index) => (
         <ProjectCard key={index} project={project} />
       ))}
-      <ScrollBar orientation="vertical" />
+      <ScrollBar className="z-30" orientation="vertical" />
     </ScrollArea>
   );
 }
