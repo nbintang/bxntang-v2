@@ -46,10 +46,10 @@ export const projectData: Project[] = [
     github: "https://github.com/nbintang/Quizium",
     technologies: [
       "Typescript",
-      "ReactJS",
+      "Prisma",
       "NextJS",
       "Shadcn",
-      "Prisma",
+      "ReactJS",
       "Tailwind",
     ],
     year: "2024",
@@ -66,6 +66,26 @@ export const projectData: Project[] = [
     year: new Date().getFullYear().toString(),
     status: "Maintained",
   },
+  {
+    title: "Literasi",
+    description:
+      "A digital library platform that allows users to borrow and read books online, featuring a user-friendly interface and secure borrowing system.",
+    image: "/img/project/bookstore.png",
+    url: "https://github.com/nbintang",
+    github: "https://github.com/nbintang/bookstore-lapon",
+    technologies: [
+      "Typescript",
+      "Prisma",
+      "NextJS",
+      "Shadcn",
+      "ReactJS",
+      "Tailwind",
+      "ReactQuery",
+    ],
+    year: new Date().getFullYear().toString(),
+    status: "Maintained",
+  },
+
   {
     title: "E Hospital",
     description:
@@ -105,14 +125,14 @@ export const projectData: Project[] = [
     github: "https://github.com/nbintang/wartech-backend",
     technologies: [
       "Typescript",
-      "ReactJS",
+      "NestJS",
       "NextJS",
+      "Axios",
+      "ReactJS",
       "Shadcn",
       "Tailwind",
-      "Axios",
       "ReactQuery",
       "Prisma",
-      "NestJS",
     ],
     year: "2023",
     status: "In Progress",

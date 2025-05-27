@@ -70,7 +70,6 @@ export default function GithubContributionChartsCard({
           data={data}
           isError={isError}
           loading={isLoading}
-          year="last"
         />
         <ScrollBar orientation="horizontal" />
       </ScrollArea>

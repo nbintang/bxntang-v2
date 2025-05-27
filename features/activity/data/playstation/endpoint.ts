@@ -1,6 +1,5 @@
 "use server";
 
-
 import {
   getProfileFromUserName,
   getRecentlyPlayedGames,
@@ -22,6 +21,7 @@ type ProfilePsDataProps = {
   recent: RecentlyPlayedGame[];
   gameTitles: TitleTrophiesResponse | null;
 };
+
 export async function getEndpointPsData(): Promise<ProfilePsDataProps> {
   try {
     const authorization = await getPlaystationToken();
@@ -32,12 +32,9 @@ export async function getEndpointPsData(): Promise<ProfilePsDataProps> {
       limit: 10,
       categories: ["ps4_game"],
     });
-
     const recentlyPlayedGame = recentlyPlayedGames.data
       .gameLibraryTitlesRetrieve.games as RecentlyPlayedGame[];
-
     const titles = await getUserTitles(authorization, user.id);
-
     const findRecentlyPlayedGameTitles = titles.trophyTitles.find(
       (t) =>
         t.trophyTitleName.toLowerCase().trim() ===
