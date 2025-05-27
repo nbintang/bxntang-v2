@@ -69,17 +69,12 @@ const ProjectCardLayout = ({
 
       <div
         className={cn(
-          "absolute inset-0 pointer-events-none  transition-all duration-1000",
-          isHovered
-            ? "bg-gradient-to-t from-primary/90 to-primary/20 "
-            : "bg-primary/40"
+          "absolute inset-0 pointer-events-none  transition-all duration-1000 bg-primary/40 group-hover:bg-gradient-to-t from-primary/90 to-primary/20 "
         )}
       />
       {children}
     </section>
   );
 };
-
-
 
 export default ProjectCardLayout;
